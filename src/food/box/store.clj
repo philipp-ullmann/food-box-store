@@ -3,7 +3,7 @@
             [ring.adapter.jetty :refer [run-jetty]]
             [net.cgrand.enlive-html :as html]
             [compojure [core :refer [defroutes GET]]
-                       [route :as route]
+                       [route :refer [resources]]
                        [handler :as handler]])
             
   (:gen-class))
@@ -11,7 +11,8 @@
 (html/deftemplate home "views/application.html" [])
 
 (defroutes routes
-  (GET "/" [] (home)))
+  (GET "/" [] (home))
+  (resources "/"))
 
 (def app
   (handler/site routes))
