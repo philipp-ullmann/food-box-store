@@ -1,1 +1,4 @@
-{:port 8080}
+{:port         8080
+ :price-small  "$5"
+ :price-medium "$25"
+ :price-large  "$45"}
