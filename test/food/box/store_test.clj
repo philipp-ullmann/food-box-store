@@ -9,5 +9,5 @@
   (-> (session app)
       (visit "/")
       (has (some-text? (:price-small env)))
-      (has (some-text? (:price-medium env)))
-      (has (some-text? (:price-large env)))))
+      (has (some-text? (:price-regular env)))
+      (has (some-text? (:price-premium env)))))
