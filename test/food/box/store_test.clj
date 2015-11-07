@@ -1,7 +1,13 @@
 (ns food.box.store-test
-  (:require [clojure.test :refer :all]
-            [food.box.store :refer :all]))
+  (:require [kerodon.core   :refer :all]
+            [kerodon.test   :refer :all]
+            [clojure.test   :refer :all]
+            [environ.core   :refer [env]]
+            [food.box.store :refer [app]])) 
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest user-can-see-prices-of-food-boxes
+  (-> (session app)
+      (visit "/")
+      (has (some-text? (:price-small env)))
+      (has (some-text? (:price-medium env)))
+      (has (some-text? (:price-large env)))))

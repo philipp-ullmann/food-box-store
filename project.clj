@@ -11,4 +11,5 @@
   :main ^:skip-aot food.box.store
   :uberjar-name "store-standalone.jar"
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles {:uberjar {:aot :all}
+             :test    {:dependencies [[kerodon "0.7.0"]]}})
