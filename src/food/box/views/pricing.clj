@@ -8,7 +8,7 @@
   [value]
   [:form {:method "get" :action "/order"}
     [:input {:type "hidden" :name "box" :value value}]
-    [:input.button-choose.pure-button {:type "submit" :value "Choose"}]])
+    [:button.button-choose.pure-button {:type "submit"} "Choose"]])
 
 (defn show
   "Displays the pricing table."
@@ -20,7 +20,7 @@
       [:div.pricing-tables.pure-g
 
         ; SMALL
-        [:div.pure-u-1.pure-u-md-1-3
+        [:div#small-box.pure-u-1.pure-u-md-1-3
           [:div.pricing-table.pricing-table-free
             [:div.pricing-table-header
               [:h2 "SMALL"]
@@ -37,7 +37,7 @@
             (choose-button order/SMALL)]]
 
         ; REGULAR
-        [:div.pure-u-1.pure-u-md-1-3
+        [:div#regular-box.pure-u-1.pure-u-md-1-3
           [:div.pricing-table.pricing-table-biz.pricing-table-selected
             [:div.pricing-table-header
               [:h2 "REGULAR"]
@@ -54,7 +54,7 @@
             (choose-button order/REGULAR)]]
 
         ; PREMIUM
-        [:div.pure-u-1.pure-u-md-1-3
+        [:div#premium-box.pure-u-1.pure-u-md-1-3
           [:div.pricing-table.pricing-table-enterprise
             [:div.pricing-table-header
               [:h2 "PREMIUM"]
