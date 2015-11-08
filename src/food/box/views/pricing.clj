@@ -1,6 +1,14 @@
 (ns food.box.views.pricing
   (:require [environ.core               :refer [env]]
+            [food.box.models.order      :as order]
             [food.box.views.application :refer :all]))
+
+(defn- choose-button
+  "Returns a form button to choose a food box."
+  [value]
+  [:form {:method "get" :action "/order"}
+    [:input {:type "hidden" :name "box" :value value}]
+    [:input.button-choose.pure-button {:type "submit" :value "Choose"}]])
 
 (defn show
   "Displays the pricing table."
@@ -26,9 +34,9 @@
               [:li "..."]
               [:li "..."]]
 
-            [:button.button-choose.pure-button "Choose"]]]
+            (choose-button order/SMALL)]]
 
-        ; MEDIUM
+        ; REGULAR
         [:div.pure-u-1.pure-u-md-1-3
           [:div.pricing-table.pricing-table-biz.pricing-table-selected
             [:div.pricing-table-header
@@ -43,9 +51,9 @@
               [:li "..."]
               [:li "..."]]
 
-            [:button.button-choose.pure-button "Choose"]]]
+            (choose-button order/REGULAR)]]
 
-        ; LARGE
+        ; PREMIUM
         [:div.pure-u-1.pure-u-md-1-3
           [:div.pricing-table.pricing-table-enterprise
             [:div.pricing-table-header
@@ -60,7 +68,7 @@
               [:li "..."]
               [:li "..."]]
 
-            [:button.button-choose.pure-button "Choose"]]]]
+            (choose-button order/PREMIUM)]]]
 
       ; INFORMATIONS
       [:div.information.pure-g
