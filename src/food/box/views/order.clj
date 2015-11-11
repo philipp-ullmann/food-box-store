@@ -1,5 +1,6 @@
 (ns food.box.views.order
-  (:require [food.box.views.application :refer :all]))
+  (:require [food.box.views.application :refer :all]
+            [food.box.models.country    :refer [countries]]))
 
 (defn show
   "Renders the order formular."
@@ -28,13 +29,15 @@
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "city"} "City*"]
               [:input#city.pure-u-23-24 {:type "text" :required true}]]
+
+            [:div.pure-u-1.pure-u-md-1-3
+              [:label {:for "state"} "State*"]
+              [:input#state.pure-u-23-24 {:type "text" :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "state"} "State"]
-              [:select#state.pure-input-1-2
-                [:option "AL"]
-                [:option "CA"]
-                [:option "IL"]]]]
+              [:label {:for "country"} "Country*"]
+              [:select#country.pure-input-1-2
+                (map #(vector :option %) countries)]]]
       
           [:label.pure-checkbox {:for "terms"}
             [:input#terms {:type "checkbox"} " I've read the terms and conditions"]]

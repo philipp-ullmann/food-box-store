@@ -33,3 +33,21 @@
       (within [:#premium-box]
         (press "Choose"))
       (has (some-text? (str "Order \"" order/PREMIUM "\" box")))))
+
+(deftest user-can-order-a-small-food-box
+  (-> (session app)
+      (visit "/")
+
+      ; Choose small box
+      (within [:#small-box]
+        (press "Choose"))
+
+      ; Fill in the order formular
+      (has (some-text? (str "Order \"" order/SMALL "\" box")))
+      (fill-in "First Name*" "Philipp")
+      (fill-in "Last Name*"  "Ullmann")
+      (fill-in "E-Mail*"     "ullmann.philipp@gmail.com")
+      (fill-in "City*"       "Baden")
+      (fill-in "State*"      "Niederösterreich")
+      (choose  "Country*"    "Austria")
+      (check   "I've read the terms and conditions")))
