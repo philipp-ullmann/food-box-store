@@ -7,7 +7,8 @@
                  [ring/ring-jetty-adapter "1.4.0"]
                  [compojure               "1.4.0"]
                  [hiccup                  "1.0.5"]
-                 [environ                 "1.0.1"]]
+                 [environ                 "1.0.1"]
+                 [bouncer                 "0.3.3"]]
   :main ^:skip-aot food.box.store
   :uberjar-name "store-standalone.jar"
   :target-path "target/%s"

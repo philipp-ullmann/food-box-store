@@ -39,7 +39,7 @@
               [:select#country.pure-input-1-2
                 (map #(vector :option %) countries)]]]
       
-          [:label.pure-checkbox {:for "terms"}
-            [:input#terms {:type "checkbox"} " I've read the terms and conditions"]]
+          [:label.pure-checkbox {:for "terms-accepted"}
+            [:input#terms-accepted {:type "checkbox"} " I've read the terms and conditions"]]
       
           [:button.pure-button.pure-button-primary {:type "submit"} "Submit"]]]]))
