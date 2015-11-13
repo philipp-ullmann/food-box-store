@@ -1,6 +1,6 @@
 (ns food.box.models.country) 
 
-(def countries
+(def COUNTRIES
   ["Afghanistan"
    "Åland Islands"
    "Albania"
