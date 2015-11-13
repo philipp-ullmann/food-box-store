@@ -2,9 +2,15 @@
   (:require [food.box.views.application :refer :all]
             [food.box.models.country    :refer [COUNTRIES]]))
 
+(defn- country-options
+  "Returns the option tags for all available countries."
+  [current]
+  (map #(vector :option {:selected (= current %)} %)
+       COUNTRIES))
+
 (defn show
   "Renders the order formular."
-  [box first-name last-name email city state country terms-accepted?]
+  [{:keys [box first-name last-name email city state country terms-accepted?]}]
   (layout
     [:div.l-box
       [:h1 "Order \"" box "\" box"]
@@ -16,33 +22,52 @@
           [:div.pure-g
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "first-name"} "First Name*"]
-              [:input#first-name.pure-u-23-24 {:type "text" :required true :value first-name}]]
+              [:input#first-name.pure-u-23-24 {:type     "text"
+                                               :name     "order.first-name"
+                                               :value    first-name
+                                               :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "last-name"} "Last Name*"]
-              [:input#last-name.pure-u-23-24 {:type "text" :required true :value last-name}]]
+              [:input#last-name.pure-u-23-24 {:type     "text"
+                                              :name     "order.last-name"
+                                              :value    last-name
+                                              :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "email"} "E-Mail*"]
-              [:input#email.pure-u-23-24 {:type "email" :required true :value email}]]
+              [:input#email.pure-u-23-24 {:type     "email"
+                                          :name     "order.email"
+                                          :value    email
+                                          :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "city"} "City*"]
-              [:input#city.pure-u-23-24 {:type "text" :required true :value city}]]
+              [:input#city.pure-u-23-24 {:type     "text"
+                                         :name     "order.city"
+                                         :value    city
+                                         :required true}]]
 
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "state"} "State*"]
-              [:input#state.pure-u-23-24 {:type "text" :required true :value state}]]
+              [:input#state.pure-u-23-24 {:type     "text"
+                                          :name     "order.state"
+                                          :value    state
+                                          :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "country"} "Country*"]
-              [:select#country.pure-input-1-2
-                (map #(vector :option %) COUNTRIES)]]]
+              [:select#country.pure-input-1-2 {:name "order.country"}
+                                              (country-options country)]]]
       
           [:label.pure-checkbox {:for "terms-accepted"}
-            [:input#terms-accepted {:type "checkbox" :checked terms-accepted?}
+            [:input#terms-accepted {:type    "checkbox"
+                                    :name    "order.terms-accepted?"
+                                    :checked terms-accepted?}
                                    " I've read the terms and conditions"]]
 
-          [:input#box {:type "hidden" :value box}]
+          [:input#box {:type  "hidden"
+                       :name  "order.box"
+                       :value box}]
       
           [:button.pure-button.pure-button-primary {:type "submit"} "Submit"]]]]))
