@@ -2,9 +2,12 @@
   (:require [environ.core       :refer [env]]
             [ring.adapter.jetty :refer [run-jetty]]
 
-            [compojure [core    :refer [defroutes]]
-                       [route   :refer [resources]]
-                       [handler :as handler]]
+            [ring.middleware [params         :refer [wrap-params]]
+                             [nested-params  :refer [wrap-nested-params]]
+                             [keyword-params :refer [wrap-keyword-params]]]
+
+            [compojure [core  :refer [defroutes]]
+                       [route :refer [resources]]]
 
             [food.box.controllers [pricing :as pricing]
                                   [order   :as order]])
@@ -17,7 +20,10 @@
   (resources "/"))
 
 (def app
-  (handler/site routes))
+  (-> routes
+      wrap-keyword-params
+      wrap-nested-params
+      wrap-params))
 
 (defn -main [& args]
   (run-jetty app {:port  (Integer. (:port env))

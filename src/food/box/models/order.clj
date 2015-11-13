@@ -19,4 +19,4 @@
    :state           [[v/required :message "State can't be blank"]]
    :country         [[v/required :message "Country can't be blank"]
                      [v/member COUNTRIES :message "Orders for the given country are not accepted"]]
-   :terms-accepted? [[true? :message "General business terms must be accepted"]]})
+   :terms-accepted  [[v/required :message "General business terms must be accepted"]]})

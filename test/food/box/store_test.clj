@@ -50,4 +50,8 @@
       (fill-in "City*"       "Baden")
       (fill-in "State*"      "Niederösterreich")
       (choose  "Country*"    "Austria")
-      (check   "I've read the terms and conditions")))
+      (check   "I've read the terms and conditions")
+      (press   "Confirm")
+
+      (follow-redirect)
+      (has (some-text? "How it works")))) 

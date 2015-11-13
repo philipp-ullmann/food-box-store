@@ -10,7 +10,7 @@
 
 (defn show
   "Renders the order formular."
-  [{:keys [box first-name last-name email city state country terms-accepted?]}]
+  [{:keys [box first-name last-name email city state country terms-accepted]}]
   (layout
     [:div.l-box
       [:h1 "Order \"" box "\" box"]
@@ -23,51 +23,51 @@
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "first-name"} "First Name*"]
               [:input#first-name.pure-u-23-24 {:type     "text"
-                                               :name     "order.first-name"
+                                               :name     "order[first-name]"
                                                :value    first-name
                                                :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "last-name"} "Last Name*"]
               [:input#last-name.pure-u-23-24 {:type     "text"
-                                              :name     "order.last-name"
+                                              :name     "order[last-name]"
                                               :value    last-name
                                               :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "email"} "E-Mail*"]
               [:input#email.pure-u-23-24 {:type     "email"
-                                          :name     "order.email"
+                                          :name     "order[email]"
                                           :value    email
                                           :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "city"} "City*"]
               [:input#city.pure-u-23-24 {:type     "text"
-                                         :name     "order.city"
+                                         :name     "order[city]"
                                          :value    city
                                          :required true}]]
 
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "state"} "State*"]
               [:input#state.pure-u-23-24 {:type     "text"
-                                          :name     "order.state"
+                                          :name     "order[state]"
                                           :value    state
                                           :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "country"} "Country*"]
-              [:select#country.pure-input-1-2 {:name "order.country"}
+              [:select#country.pure-input-1-2 {:name "order[country]"}
                                               (country-options country)]]]
       
           [:label.pure-checkbox {:for "terms-accepted"}
             [:input#terms-accepted {:type    "checkbox"
-                                    :name    "order.terms-accepted?"
-                                    :checked terms-accepted?}
+                                    :name    "order[terms-accepted]"
+                                    :checked terms-accepted}
                                    " I've read the terms and conditions"]]
 
           [:input#box {:type  "hidden"
-                       :name  "order.box"
+                       :name  "order[box]"
                        :value box}]
       
-          [:button.pure-button.pure-button-primary {:type "submit"} "Submit"]]]]))
+          [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]]]]))

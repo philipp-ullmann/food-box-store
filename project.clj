@@ -8,7 +8,8 @@
                  [compojure               "1.4.0"]
                  [hiccup                  "1.0.5"]
                  [environ                 "1.0.1"]
-                 [bouncer                 "0.3.3"]]
+                 [bouncer                 "0.3.3"]
+                 [com.taoensso/timbre     "4.1.4"]]
   :main ^:skip-aot food.box.store
   :uberjar-name "store-standalone.jar"
   :target-path "target/%s"
