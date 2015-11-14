@@ -15,6 +15,7 @@
    :last-name       [[v/required :message "Last name can't be blank"]]
    :email           [[v/required :message "Email address can't be blank"]
                      [v/email    :message "Email must be a valid address"]]
+   :street          [[v/required :message "Street can't be blank"]]
    :city            [[v/required :message "City can't be blank"]]
    :state           [[v/required :message "State can't be blank"]]
    :country         [[v/required :message "Country can't be blank"]

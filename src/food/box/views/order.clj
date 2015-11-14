@@ -10,7 +10,7 @@
 
 (defn show
   "Renders the order formular."
-  [{:keys [box first-name last-name email city state country terms-accepted]}]
+  [{:keys [box first-name last-name email street city state country terms-accepted]}]
   (layout
     [:div.l-box
       [:h1 "Order \"" box "\" box"]
@@ -41,6 +41,13 @@
                                           :value    email
                                           :required true}]]
       
+            [:div.pure-u-1.pure-u-md-1-3
+              [:label {:for "street"} "Street*"]
+              [:input#street.pure-u-23-24 {:type     "text"
+                                           :name     "order[street]"
+                                           :value    street
+                                           :required true}]]
+
             [:div.pure-u-1.pure-u-md-1-3
               [:label {:for "city"} "City*"]
               [:input#city.pure-u-23-24 {:type     "text"
