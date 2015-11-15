@@ -19,7 +19,11 @@
       (redirect "/"))
 
     ; FAILED
-    (view/show order)))
+    (->> (b/validate order o/validator)
+         second
+         ::b/errors
+         (assoc order :errors)
+         view/show)))
 
 (defroutes routes
   (GET  "/order" [box]   (view/show {:box box}))

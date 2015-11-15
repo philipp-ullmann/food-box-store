@@ -8,16 +8,30 @@
   (map #(vector :option {:selected (= current %)} %)
        COUNTRIES))
 
+(defn- errors-for
+  "Renders all errors for an attribute."
+  [errors]
+  (when errors (map #(vector :li %) errors)))
+
 (defn show
   "Renders the order formular."
-  [{:keys [box first-name last-name email street postcode city country terms-accepted]}]
+  [{:keys [box first-name last-name email street postcode city country terms-accepted errors]}]
   (layout
     [:div.l-box
       [:h1 "Order \"" box "\" box"]
 
-      [:ul.alert-box
-        [:li [:strong "First Name"] " is a required field"]
-        [:li [:strong "Last Name"] " is a required field"]]
+      (if errors
+        [:ul.alert-box
+          (map #(errors-for (% errors))
+               [:first-name
+                :last-name
+                :email
+                :street
+                :postcode
+                :city
+                :country
+                :terms-accepted
+                :box])])
 
       [:form.pure-form.pure-form-stacked {:method "post" :action "/order"}
         [:fieldset

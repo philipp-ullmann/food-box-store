@@ -70,5 +70,11 @@
       (has (some-text? (str "Order \"" order/REGULAR "\" box")))
       (press "Confirm")
 
-      ; Order page
-      (has (some-text? (str "Order \"" order/REGULAR "\" box"))))) 
+      ; Validation errors
+      (has (some-text? "First Name can't be blank"))
+      (has (some-text? "Last Name can't be blank"))
+      (has (some-text? "Email Address can't be blank"))
+      (has (some-text? "Street can't be blank"))
+      (has (some-text? "Postcode / Zip can't be blank"))
+      (has (some-text? "Town / City can't be blank"))
+      (has (some-text? "General business terms must be accepted"))))
