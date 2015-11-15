@@ -10,7 +10,7 @@
 
 (defn show
   "Renders the order formular."
-  [{:keys [box first-name last-name email street city state country terms-accepted]}]
+  [{:keys [box first-name last-name email street postcode city country terms-accepted]}]
   (layout
     [:div.l-box
       [:h1 "Order \"" box "\" box"]
@@ -21,49 +21,49 @@
       
           [:div.pure-g
             [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "first-name"} "First Name*"]
+              [:label {:for "first-name"} "First Name *"]
               [:input#first-name.pure-u-23-24 {:type     "text"
                                                :name     "order[first-name]"
                                                :value    first-name
                                                :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "last-name"} "Last Name*"]
+              [:label {:for "last-name"} "Last Name *"]
               [:input#last-name.pure-u-23-24 {:type     "text"
                                               :name     "order[last-name]"
                                               :value    last-name
                                               :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "email"} "E-Mail*"]
+              [:label {:for "email"} "Email Address *"]
               [:input#email.pure-u-23-24 {:type     "email"
                                           :name     "order[email]"
                                           :value    email
                                           :required true}]]
       
             [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "street"} "Street*"]
+              [:label {:for "street"} "Street *"]
               [:input#street.pure-u-23-24 {:type     "text"
                                            :name     "order[street]"
                                            :value    street
                                            :required true}]]
 
             [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "city"} "City*"]
+              [:label {:for "postcode"} "Postcode / Zip *"]
+              [:input#postcode.pure-u-23-24 {:type     "text"
+                                             :name     "order[postcode]"
+                                             :value    postcode
+                                             :required true}]]
+
+            [:div.pure-u-1.pure-u-md-1-3
+              [:label {:for "city"} "Town / City *"]
               [:input#city.pure-u-23-24 {:type     "text"
                                          :name     "order[city]"
                                          :value    city
                                          :required true}]]
 
             [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "state"} "State*"]
-              [:input#state.pure-u-23-24 {:type     "text"
-                                          :name     "order[state]"
-                                          :value    state
-                                          :required true}]]
-      
-            [:div.pure-u-1.pure-u-md-1-3
-              [:label {:for "country"} "Country*"]
+              [:label {:for "country"} "Country *"]
               [:select#country.pure-input-1-2 {:name "order[country]"}
                                               (country-options country)]]]
       

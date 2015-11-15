@@ -44,13 +44,13 @@
 
       ; Fill in all fields of the order formular
       (has (some-text? (str "Order \"" order/SMALL "\" box")))
-      (fill-in "First Name*" "Philipp")
-      (fill-in "Last Name*"  "Ullmann")
-      (fill-in "E-Mail*"     "ullmann.philipp@gmail.com")
-      (fill-in "Street*"     "Boldrinigasse 1/6")
-      (fill-in "City*"       "Baden")
-      (fill-in "State*"      "Niederösterreich")
-      (choose  "Country*"    "Austria")
+      (fill-in "First Name *"     "Philipp")
+      (fill-in "Last Name *"      "Ullmann")
+      (fill-in "Email Address *"  "ullmann.philipp@gmail.com")
+      (fill-in "Street *"         "Boldrinigasse 1/6")
+      (fill-in "Postcode / Zip *" "2500")
+      (fill-in "Town / City *"    "Baden")
+      (choose  "Country *"        "Austria")
       (check   "I've read the terms and conditions")
       (press   "Confirm")
 
