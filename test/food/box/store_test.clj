@@ -78,3 +78,45 @@
       (has (some-text? "Postcode / Zip can't be blank"))
       (has (some-text? "Town / City can't be blank"))
       (has (some-text? "General business terms must be accepted"))))
+
+(deftest user-cannot-order-a-regular-box-with-an-invalid-email-address
+  (-> (session app)
+      (visit "/")
+
+      ; Choose regular box
+      (within [:#regular-box]
+        (press "Choose"))
+
+      ; Fill in all fields of the order formular
+      (has (some-text? (str "Order \"" order/REGULAR "\" box")))
+      (fill-in "First Name *"     "Philipp")
+      (fill-in "Last Name *"      "Ullmann")
+      (fill-in "Email Address *"  "ullmann.philipp@gmail")
+      (fill-in "Street *"         "Boldrinigasse 1/6")
+      (fill-in "Postcode / Zip *" "2500")
+      (fill-in "Town / City *"    "Baden")
+      (choose  "Country *"        "Austria")
+      (check   "I've read the terms and conditions")
+      (press   "Confirm")
+
+      ; Validation errors
+      (has (some-text? "Email Address must be a valid address"))))
+
+(deftest user-cannot-order-an-unknown-box
+  (-> (session app)
+      (visit "/order?box=unknown")
+
+      ; Fill in all fields of the order formular
+      (has (some-text? "Order \"unknown\" box"))
+      (fill-in "First Name *"     "Philipp")
+      (fill-in "Last Name *"      "Ullmann")
+      (fill-in "Email Address *"  "ullmann.philipp@gmail.com")
+      (fill-in "Street *"         "Boldrinigasse 1/6")
+      (fill-in "Postcode / Zip *" "2500")
+      (fill-in "Town / City *"    "Baden")
+      (choose  "Country *"        "Austria")
+      (check   "I've read the terms and conditions")
+      (press   "Confirm")
+
+      ; Validation errors
+      (has (some-text? "Unknown food box size"))))
