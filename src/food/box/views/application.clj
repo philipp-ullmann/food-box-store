@@ -11,6 +11,7 @@
       [:meta {:name "description" :content "A web store to sell austrian food boxes in different sizes."}]
       [:title "Austrian food box"]
       (include-css "http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
+      (include-css "/css/application.css")
 
       "<!--[if lte IE 8]>"
       (include-css "http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css")

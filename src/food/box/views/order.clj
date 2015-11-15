@@ -15,6 +15,10 @@
     [:div.l-box
       [:h1 "Order \"" box "\" box"]
 
+      [:ul.alert-box
+        [:li [:strong "First Name"] " is a required field"]
+        [:li [:strong "Last Name"] " is a required field"]]
+
       [:form.pure-form.pure-form-stacked {:method "post" :action "/order"}
         [:fieldset
           [:legend "Address"]
