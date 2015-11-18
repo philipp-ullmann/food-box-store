@@ -3,6 +3,7 @@
             [food.box.models.order :as o]
             [bouncer.core          :as b]
             [taoensso.timbre       :as log]
+            [crypto.random         :refer [hex]]
             [ring.util.response    :refer [redirect]]
             [compojure.core        :refer [defroutes GET POST]]))
 
@@ -14,9 +15,13 @@
   (if (b/valid? order o/validator)
 
     ; SUCCESS
-    (do
+    (let [order (assoc order :number (base32 5))]
+
       (log/info "Order received:" order)
-      (redirect "/"))
+
+      (-> (redirect "/")
+          (assoc-in [:flash :notice]
+                    (str "Thank you for your order! Order number: " (:number order)))))
 
     ; FAILED
     (->> (b/validate order o/validator)

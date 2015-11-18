@@ -12,8 +12,8 @@
 
 (defn show
   "Displays the pricing table."
-  []
-  (layout
+  [notice]
+  (layout notice
     [:div.l-content
       
       ; PRICES
