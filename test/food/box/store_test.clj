@@ -17,18 +17,18 @@
   (-> (session app)
       (visit "/")
 
-      ; Choose small box
+      ; CHOOSE SMALL
       (within [:#small-box]
         (press "Choose"))
       (has (some-text? (str "Order \"" order/SMALL "\" box")))
 
-      ; Choose regular box
+      ; CHOOSE REGULAR
       (visit "/")
       (within [:#regular-box]
         (press "Choose"))
       (has (some-text? (str "Order \"" order/REGULAR "\" box")))
 
-      ; Choose premium box
+      ; CHOOSE PREMIUM
       (visit "/")
       (within [:#premium-box]
         (press "Choose"))
@@ -38,11 +38,11 @@
   (-> (session app)
       (visit "/")
 
-      ; Choose small box
+      ; CHOOSE BOX
       (within [:#small-box]
         (press "Choose"))
 
-      ; Fill in all fields of the order formular
+      ; FILL IN
       (has (some-text? (str "Order \"" order/SMALL "\" box")))
       (fill-in "First Name *"     "Philipp")
       (fill-in "Last Name *"      "Ullmann")
@@ -54,23 +54,24 @@
       (check   "I've read the terms and conditions")
       (press   "Confirm")
 
-      ; Start page
+      ; PRICING PAGE
       (follow-redirect)
-      (has (some-text? "How it works")))) 
+      (has (some-text? "How it works"))
+      (has (some-text? "Thank you for your order! Order number: ")))) 
 
 (deftest user-cannot-order-a-regular-box-with-missing-order-fields
   (-> (session app)
       (visit "/")
 
-      ; Choose regular box
+      ; CHOOSE BOX
       (within [:#regular-box]
         (press "Choose"))
 
-      ; Do not fill in a field of the order formular
+      ; FILL IN
       (has (some-text? (str "Order \"" order/REGULAR "\" box")))
       (press "Confirm")
 
-      ; Validation errors
+      ; VALIDATION ERRORS
       (has (some-text? "First Name can't be blank"))
       (has (some-text? "Last Name can't be blank"))
       (has (some-text? "Email Address can't be blank"))
@@ -83,11 +84,11 @@
   (-> (session app)
       (visit "/")
 
-      ; Choose regular box
+      ; CHOOSE BOX
       (within [:#regular-box]
         (press "Choose"))
 
-      ; Fill in all fields of the order formular
+      ; FILL IN
       (has (some-text? (str "Order \"" order/REGULAR "\" box")))
       (fill-in "First Name *"     "Philipp")
       (fill-in "Last Name *"      "Ullmann")
@@ -99,14 +100,14 @@
       (check   "I've read the terms and conditions")
       (press   "Confirm")
 
-      ; Validation errors
+      ; VALIDATION ERRORS
       (has (some-text? "Email Address must be a valid address"))))
 
 (deftest user-cannot-order-an-unknown-box
   (-> (session app)
       (visit "/order?box=unknown")
 
-      ; Fill in all fields of the order formular
+      ; FILL IN
       (has (some-text? "Order \"unknown\" box"))
       (fill-in "First Name *"     "Philipp")
       (fill-in "Last Name *"      "Ullmann")
@@ -118,5 +119,15 @@
       (check   "I've read the terms and conditions")
       (press   "Confirm")
 
-      ; Validation errors
+      ; FIELD VALUES
+      (has (value?    "First Name *"     "Philipp"))
+      (has (value?    "Last Name *"      "Ullmann"))
+      (has (value?    "Eamil Address *"  "ullmann.philipp@gmail.com"))
+      (has (value?    "Street *"         "Boldrinigasse 1/6"))
+      (has (value?    "Postcode / Zip *" "2500"))
+      (has (value?    "Town / City *"    "Baden"))
+      (has (selected? "Country *",       "Austria"))
+      (has (checked?  "I've read the terms and conditions"))
+
+      ; VALIDATION ERRORS
       (has (some-text? "Unknown food box size"))))
