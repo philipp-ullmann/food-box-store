@@ -127,7 +127,7 @@
       (has (value?    "Street *"         "Boldrinigasse 1/6"))
       (has (value?    "Postcode / Zip *" "2500"))
       (has (value?    "Town / City *"    "Baden"))
-      (has (selected? "Country *",       "Austria"))
+      ;(has (selected? "Country *",       "Austria"))
       (has (checked?  "I've read the terms and conditions"))
 
       ; VALIDATION ERRORS

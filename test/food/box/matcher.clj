@@ -3,7 +3,7 @@
             [kerodon.test :refer :all]))
 
 (defmacro checked? [selector]
-  `(validate not=
-             #(get-value % ~selector)
-             nil
-             (~'checked? ~selector)))
+  `(validate =
+             #(get-attr % ~selector :checked)
+             "checked"
+             (~'checked? ~selector :checked "checked")))
