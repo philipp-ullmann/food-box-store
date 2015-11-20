@@ -4,6 +4,10 @@
 
 (defmacro checked? [selector]
   `(validate =
-             #(get-attr % ~selector :checked)
-             "checked"
-             (~'checked? ~selector :checked "checked")))
+             #(-> (:enlive %)
+                  (form-element-for ~selector)
+                  first
+                  :attrs
+                  (get :checked))
+             "on"
+             (~'checked? ~selector :checked "on")))
