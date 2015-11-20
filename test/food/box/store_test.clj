@@ -2,6 +2,7 @@
   (:require [kerodon.core          :refer :all]
             [kerodon.test          :refer :all]
             [clojure.test          :refer :all]
+            [food.box.matcher      :refer :all]
             [environ.core          :refer [env]]
             [food.box.store        :refer [app]]
             [food.box.models.order :as order]))
@@ -122,7 +123,7 @@
       ; FIELD VALUES
       (has (value?    "First Name *"     "Philipp"))
       (has (value?    "Last Name *"      "Ullmann"))
-      (has (value?    "Eamil Address *"  "ullmann.philipp@gmail.com"))
+      (has (value?    "Email Address *"  "ullmann.philipp@gmail.com"))
       (has (value?    "Street *"         "Boldrinigasse 1/6"))
       (has (value?    "Postcode / Zip *" "2500"))
       (has (value?    "Town / City *"    "Baden"))

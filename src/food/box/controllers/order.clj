@@ -3,7 +3,7 @@
             [food.box.models.order :as o]
             [bouncer.core          :as b]
             [taoensso.timbre       :as log]
-            [crypto.random         :refer [hex]]
+            [crypto.random         :refer [base32]]
             [ring.util.response    :refer [redirect]]
             [compojure.core        :refer [defroutes GET POST]]))
 
