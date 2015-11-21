@@ -11,3 +11,17 @@
                   (get :checked))
              "on"
              (~'checked? ~selector :checked "on")))
+
+(defmacro selected? [selector value]
+  `(validate =
+             #(let [options# (-> (form-element-for (:enlive %) ~selector)
+                                 first
+                                 :content)]
+
+                   (some (fn [option#]
+                           (and (= ~value     (first (:content option#)))
+                                (= "selected" (get-in option# [:attrs :selected]))))
+                         options#))
+             true
+             (~'selected? ~selector ~value)))
+
