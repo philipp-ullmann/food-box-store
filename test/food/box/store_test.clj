@@ -7,109 +7,181 @@
             [food.box.store        :refer [app]]
             [food.box.models.order :as order]))
 
-(deftest user-can-see-prices-of-boxes
+(def BOXES [[:#small-box   order/SMALL]
+            [:#regular-box order/REGULAR]
+            [:#premium-box order/PREMIUM]])
+
+;; PRICING
+;; ============================================================================
+
+(deftest box-prices
   (-> (session app)
       (visit "/")
       (has (some-text? (:price-small env)))
       (has (some-text? (:price-regular env)))
       (has (some-text? (:price-premium env)))))
 
-(deftest user-can-choose-a-box-to-order
-  (-> (session app)
-      (visit "/")
+;; SUCCESSFUL ORDER
+;; ============================================================================
 
-      ; CHOOSE SMALL
-      (within [:#small-box]
-        (press "Choose"))
-      (has (some-text? (str "Order \"" order/SMALL "\" box")))
+(deftest successful-box-order
+  (doseq [[box-id box-name] BOXES]
 
-      ; CHOOSE REGULAR
-      (visit "/")
-      (within [:#regular-box]
-        (press "Choose"))
-      (has (some-text? (str "Order \"" order/REGULAR "\" box")))
+    (-> (session app)
+        (visit "/")
 
-      ; CHOOSE PREMIUM
-      (visit "/")
-      (within [:#premium-box]
-        (press "Choose"))
-      (has (some-text? (str "Order \"" order/PREMIUM "\" box")))))
+        ; CHOOSE BOX
+        (within [box-id]
+          (press "Choose"))
 
-(deftest user-can-order-a-small-box
-  (-> (session app)
-      (visit "/")
+        (has (some-text? (str "Order \"" box-name "\" box")))
 
-      ; CHOOSE BOX
-      (within [:#small-box]
-        (press "Choose"))
+        ; FIELD VALUES
+        (has (value?         [:input#box]       box-name))
+        (has (value?         "First Name *"     ""))
+        (has (value?         "Last Name *"      ""))
+        (has (value?         "Email Address *"  ""))
+        (has (value?         "Street *"         ""))
+        (has (value?         "Postcode / Zip *" ""))
+        (has (value?         "Town / City *"    ""))
+        (has (no-selections? "Country *"))
+        (has (unchecked?     "I've read the terms and conditions"))
 
-      ; FILL IN
-      (has (some-text? (str "Order \"" order/SMALL "\" box")))
-      (fill-in "First Name *"     "Philipp")
-      (fill-in "Last Name *"      "Ullmann")
-      (fill-in "Email Address *"  "ullmann.philipp@gmail.com")
-      (fill-in "Street *"         "Boldrinigasse 1/6")
-      (fill-in "Postcode / Zip *" "2500")
-      (fill-in "Town / City *"    "Baden")
-      (choose  "Country *"        "Austria")
-      (check   "I've read the terms and conditions")
-      (press   "Confirm")
+        ; FILL IN
+        (fill-in "First Name *"     "Philipp")
+        (fill-in "Last Name *"      "Ullmann")
+        (fill-in "Email Address *"  "ullmann.philipp@gmail.com")
+        (fill-in "Street *"         "Boldrinigasse 1/6")
+        (fill-in "Postcode / Zip *" "2500")
+        (fill-in "Town / City *"    "Baden")
+        (choose  "Country *"        "Austria")
+        (check   "I've read the terms and conditions")
+        (press   "Confirm")
 
-      ; PRICING PAGE
-      (follow-redirect)
-      (has (some-text? "How it works"))
-      (has (some-text? "Thank you for your order! Order number: ")))) 
+        ; PRICING PAGE
+        (follow-redirect)
+        (has (some-text? "How it works"))
+        (has (some-text? "Thank you for your order! Order number: ")))))
 
-(deftest user-cannot-order-a-regular-box-with-missing-order-fields
-  (-> (session app)
-      (visit "/")
+;; EMPTY ORDER FIELDS
+;; ============================================================================
 
-      ; CHOOSE BOX
-      (within [:#regular-box]
-        (press "Choose"))
+(deftest failing-box-order-due-to-missing-order-fields
+  (doseq [[box-id box-name] BOXES]
 
-      ; FILL IN
-      (has (some-text? (str "Order \"" order/REGULAR "\" box")))
-      (press "Confirm")
+    (-> (session app)
+        (visit "/")
 
-      ; VALIDATION ERRORS
-      (has (some-text? "First Name can't be blank"))
-      (has (some-text? "Last Name can't be blank"))
-      (has (some-text? "Email Address can't be blank"))
-      (has (some-text? "Street can't be blank"))
-      (has (some-text? "Postcode / Zip can't be blank"))
-      (has (some-text? "Town / City can't be blank"))
-      (has (some-text? "General business terms must be accepted"))))
+        ; CHOOSE BOX
+        (within [box-id]
+          (press "Choose"))
 
-(deftest user-cannot-order-a-regular-box-with-an-invalid-email-address
-  (-> (session app)
-      (visit "/")
+        (has (some-text? (str "Order \"" box-name "\" box")))
 
-      ; CHOOSE BOX
-      (within [:#regular-box]
-        (press "Choose"))
+        ; FIELD VALUES
+        (has (value?         [:input#box]       box-name))
+        (has (value?         "First Name *"     ""))
+        (has (value?         "Last Name *"      ""))
+        (has (value?         "Email Address *"  ""))
+        (has (value?         "Street *"         ""))
+        (has (value?         "Postcode / Zip *" ""))
+        (has (value?         "Town / City *"    ""))
+        (has (no-selections? "Country *"))
+        (has (unchecked?     "I've read the terms and conditions"))
+        (press "Confirm")
 
-      ; FILL IN
-      (has (some-text? (str "Order \"" order/REGULAR "\" box")))
-      (fill-in "First Name *"     "Philipp")
-      (fill-in "Last Name *"      "Ullmann")
-      (fill-in "Email Address *"  "ullmann.philipp@gmail")
-      (fill-in "Street *"         "Boldrinigasse 1/6")
-      (fill-in "Postcode / Zip *" "2500")
-      (fill-in "Town / City *"    "Baden")
-      (choose  "Country *"        "Austria")
-      (check   "I've read the terms and conditions")
-      (press   "Confirm")
+        ; VALIDATION ERRORS
+        (has (some-text? "First Name can't be blank"))
+        (has (some-text? "Last Name can't be blank"))
+        (has (some-text? "Email Address can't be blank"))
+        (has (some-text? "Street can't be blank"))
+        (has (some-text? "Postcode / Zip can't be blank"))
+        (has (some-text? "Town / City can't be blank"))
+        (has (some-text? "General business terms must be accepted"))
 
-      ; VALIDATION ERRORS
-      (has (some-text? "Email Address must be a valid address"))))
+        ; FIELD VALUES
+        (has (value?     [:input#box]       box-name))
+        (has (value?     "First Name *"     ""))
+        (has (value?     "Last Name *"      ""))
+        (has (value?     "Email Address *"  ""))
+        (has (value?     "Street *"         ""))
+        (has (value?     "Postcode / Zip *" ""))
+        (has (value?     "Town / City *"    ""))
+        (has (selected?  "Country *" "Afghanistan"))
+        (has (unchecked? "I've read the terms and conditions")))))
 
-(deftest user-cannot-order-an-unknown-box
+;; INVALID EMAIL ADDRESS
+;; ============================================================================
+
+(deftest failing-box-order-due-to-invalid-email-address
+  (doseq [[box-id box-name] BOXES]
+
+    (-> (session app)
+        (visit "/")
+
+        ; CHOOSE BOX
+        (within [box-id]
+          (press "Choose"))
+
+        (has (some-text? (str "Order \"" box-name "\" box")))
+
+        ; FIELD VALUES
+        (has (value?         [:input#box]       box-name))
+        (has (value?         "First Name *"     ""))
+        (has (value?         "Last Name *"      ""))
+        (has (value?         "Email Address *"  ""))
+        (has (value?         "Street *"         ""))
+        (has (value?         "Postcode / Zip *" ""))
+        (has (value?         "Town / City *"    ""))
+        (has (no-selections? "Country *"))
+        (has (unchecked?     "I've read the terms and conditions"))
+
+        ; FILL IN
+        (fill-in "First Name *"     "Philipp")
+        (fill-in "Last Name *"      "Ullmann")
+        (fill-in "Email Address *"  "ullmann.philipp@gmail")
+        (fill-in "Street *"         "Boldrinigasse 1/6")
+        (fill-in "Postcode / Zip *" "2500")
+        (fill-in "Town / City *"    "Baden")
+        (choose  "Country *"        "Austria")
+        (check   "I've read the terms and conditions")
+        (press   "Confirm")
+
+        ; VALIDATION ERRORS
+        (has (some-text? "Email Address must be a valid address"))
+
+        ; FIELD VALUES
+        (has (value?    [:input#box]       box-name))
+        (has (value?    "First Name *"     "Philipp"))
+        (has (value?    "Last Name *"      "Ullmann"))
+        (has (value?    "Email Address *"  "ullmann.philipp@gmail"))
+        (has (value?    "Street *"         "Boldrinigasse 1/6"))
+        (has (value?    "Postcode / Zip *" "2500"))
+        (has (value?    "Town / City *"    "Baden"))
+        (has (selected? "Country *"        "Austria"))
+        (has (checked?  "I've read the terms and conditions")))))
+
+;; INVALID BOX
+;; ============================================================================
+
+(deftest failing-box-order-due-to-invalid-box
   (-> (session app)
       (visit "/order?box=unknown")
 
-      ; FILL IN
       (has (some-text? "Order \"unknown\" box"))
+
+      ; FIELD VALUES
+      (has (value?         [:input#box]       "unknown"))
+      (has (value?         "First Name *"     ""))
+      (has (value?         "Last Name *"      ""))
+      (has (value?         "Email Address *"  ""))
+      (has (value?         "Street *"         ""))
+      (has (value?         "Postcode / Zip *" ""))
+      (has (value?         "Town / City *"    ""))
+      (has (no-selections? "Country *"))
+      (has (unchecked?     "I've read the terms and conditions"))
+
+      ; FILL IN
       (fill-in "First Name *"     "Philipp")
       (fill-in "Last Name *"      "Ullmann")
       (fill-in "Email Address *"  "ullmann.philipp@gmail.com")
@@ -120,7 +192,11 @@
       (check   "I've read the terms and conditions")
       (press   "Confirm")
 
+      ; VALIDATION ERRORS
+      (has (some-text? "Unknown food box size"))
+
       ; FIELD VALUES
+      (has (value?    [:input#box]       "unknown"))
       (has (value?    "First Name *"     "Philipp"))
       (has (value?    "Last Name *"      "Ullmann"))
       (has (value?    "Email Address *"  "ullmann.philipp@gmail.com"))
@@ -128,7 +204,4 @@
       (has (value?    "Postcode / Zip *" "2500"))
       (has (value?    "Town / City *"    "Baden"))
       (has (selected? "Country *",       "Austria"))
-      (has (checked?  "I've read the terms and conditions"))
-
-      ; VALIDATION ERRORS
-      (has (some-text? "Unknown food box size"))))
+      (has (checked?  "I've read the terms and conditions"))))
