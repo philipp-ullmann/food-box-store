@@ -9,6 +9,12 @@
 
 (def BOXES [SMALL REGULAR PREMIUM])
 
+; PRICING
+(def PRICES
+  {SMALL   "$15"
+   REGULAR "$25"
+   PREMIUM "$35"})
+
 (def validator
   {:box             [[v/member BOXES :message "Unknown food box size"]]
    :first-name      [[v/required :message "First Name can't be blank"]]

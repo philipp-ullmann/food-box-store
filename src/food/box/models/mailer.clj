@@ -1,7 +1,7 @@
 (ns food.box.models.mailer
-  (:require [environ.core :refer [env]]
-            [postal.core  :refer [send-message]]
-            [hiccup.core  :refer [html]]))
+  (:require [environ.core          :refer [env]]
+            [postal.core           :refer [send-message]]
+            [food.box.views.mailer :as view]))
 
 (def con
   {:host "smtp.gmail.com"
@@ -19,5 +19,4 @@
      :subject "Alps food box order confirmation"
 
      :body [{:type    "text/html; charset=utf-8"
-             :content (html [:p "Thank you for you order number: "
-                                (:number order)])}]}))
+             :content (view/confirmation order)}]}))

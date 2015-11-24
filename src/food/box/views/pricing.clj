@@ -1,6 +1,5 @@
 (ns food.box.views.pricing
-  (:require [environ.core               :refer [env]]
-            [food.box.models.order      :as order]
+  (:require [food.box.models.order      :as order]
             [food.box.views.application :refer :all]))
 
 (defn- choose-button
@@ -24,7 +23,8 @@
           [:div.pricing-table.pricing-table-free
             [:div.pricing-table-header
               [:h2 "SMALL"]
-              [:span.pricing-table-price (:price-small env) [:span " per box"]]]
+              [:span.pricing-table-price (get order/PRICES order/SMALL)
+                                         [:span " per box"]]]
 
             [:ul.pricing-table-list
               [:li "FREE shipping worldwide"]
@@ -41,7 +41,8 @@
           [:div.pricing-table.pricing-table-biz.pricing-table-selected
             [:div.pricing-table-header
               [:h2 "REGULAR"]
-              [:span.pricing-table-price (:price-regular env) [:span " per box"]]]
+              [:span.pricing-table-price (get order/PRICES order/REGULAR)
+                                         [:span " per box"]]]
 
             [:ul.pricing-table-list
               [:li "FREE shipping worldwide"]
@@ -58,7 +59,8 @@
           [:div.pricing-table.pricing-table-enterprise
             [:div.pricing-table-header
               [:h2 "PREMIUM"]
-              [:span.pricing-table-price (:price-premium env) [:span " per box"]]]
+              [:span.pricing-table-price (get order/PRICES order/PREMIUM)
+                                         [:span " per box"]]]
 
             [:ul.pricing-table-list
               [:li "FREE shipping worldwide"]

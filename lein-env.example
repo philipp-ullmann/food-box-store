@@ -1,6 +1,3 @@
 {:port            "8080"
- :price-small     "$15"
- :price-regular   "$25"
- :price-premium   "$35"
  :mailer-email    "heinz@gmail.com"
  :mailer-password "secret"}

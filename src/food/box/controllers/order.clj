@@ -15,7 +15,8 @@
   (if (b/valid? order o/validator)
 
     ; SUCCESS
-    (let [order (assoc order :number (base32 5))]
+    (let [order (assoc order :number (base32 5)
+                             :price  (get o/PRICES (:box order)))]
 
       (log/info "Order received:" order)
 

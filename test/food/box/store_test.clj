@@ -3,7 +3,6 @@
             [kerodon.test          :refer :all]
             [clojure.test          :refer :all]
             [food.box.matcher      :refer :all]
-            [environ.core          :refer [env]]
             [food.box.store        :refer [app]]
             [food.box.models.order :as order]))
 
@@ -17,9 +16,9 @@
 (deftest box-prices
   (-> (session app)
       (visit "/")
-      (has (some-text? (:price-small env)))
-      (has (some-text? (:price-regular env)))
-      (has (some-text? (:price-premium env)))))
+      (has (some-text? (get order/PRICES order/SMALL)))
+      (has (some-text? (get order/PRICES order/REGULAR)))
+      (has (some-text? (get order/PRICES order/PREMIUM)))))
 
 ;; SUCCESSFUL ORDER
 ;; ============================================================================
