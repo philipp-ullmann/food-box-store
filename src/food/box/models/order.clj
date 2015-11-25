@@ -15,6 +15,14 @@
    REGULAR "$25"
    PREMIUM "$35"})
 
+; BANKING
+(def BANK_ACCOUNT
+  {:bank    "easybank"
+   :owner   "Philipp Ullmann"
+   :bic     "EASYATW1"
+   :iban    (:iban env)
+   :country "Austria"})
+
 (def validator
   {:box             [[v/member BOXES :message "Unknown food box size"]]
    :first-name      [[v/required :message "First Name can't be blank"]]
