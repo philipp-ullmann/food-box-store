@@ -1,5 +1,5 @@
 (ns food.box.views.pricing
-  (:require [food.box.models.order      :as order]
+  (:require [food.box.models.conf       :refer [PRICES SMALL REGULAR PREMIUM]]
             [food.box.views.application :refer :all]))
 
 (defn- choose-button
@@ -23,7 +23,7 @@
           [:div.pricing-table.pricing-table-free
             [:div.pricing-table-header
               [:h2 "SMALL"]
-              [:span.pricing-table-price (get order/PRICES order/SMALL)
+              [:span.pricing-table-price (get PRICES SMALL)
                                          [:span " per box"]]]
 
             [:ul.pricing-table-list
@@ -34,14 +34,14 @@
               [:li "..."]
               [:li "..."]]
 
-            (choose-button order/SMALL)]]
+            (choose-button SMALL)]]
 
         ; REGULAR
         [:div#regular-box.pure-u-1.pure-u-md-1-3
           [:div.pricing-table.pricing-table-biz.pricing-table-selected
             [:div.pricing-table-header
               [:h2 "REGULAR"]
-              [:span.pricing-table-price (get order/PRICES order/REGULAR)
+              [:span.pricing-table-price (get PRICES REGULAR)
                                          [:span " per box"]]]
 
             [:ul.pricing-table-list
@@ -52,14 +52,14 @@
               [:li "..."]
               [:li "..."]]
 
-            (choose-button order/REGULAR)]]
+            (choose-button REGULAR)]]
 
         ; PREMIUM
         [:div#premium-box.pure-u-1.pure-u-md-1-3
           [:div.pricing-table.pricing-table-enterprise
             [:div.pricing-table-header
               [:h2 "PREMIUM"]
-              [:span.pricing-table-price (get order/PRICES order/PREMIUM)
+              [:span.pricing-table-price (get PRICES PREMIUM)
                                          [:span " per box"]]]
 
             [:ul.pricing-table-list
@@ -70,7 +70,7 @@
               [:li "..."]
               [:li "..."]]
 
-            (choose-button order/PREMIUM)]]]
+            (choose-button PREMIUM)]]]
 
       ; INFORMATIONS
       [:div.information.pure-g

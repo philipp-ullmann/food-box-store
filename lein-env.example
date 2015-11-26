@@ -1,4 +1,3 @@
-{:port            "8080"
- :iban            "secret"
- :mailer-email    "heinz@gmail.com"
- :mailer-password "secret"}
+{:port          "8080"
+ :iban          "secret"
+ :mail-password "secret"}

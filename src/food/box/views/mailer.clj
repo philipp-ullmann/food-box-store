@@ -1,21 +1,29 @@
 (ns food.box.views.mailer
-  (:require [hiccup.core :refer [html]]))
+  (:require [hiccup.core          :refer [html]]
+            [food.box.models.conf :refer [BANK-ACCOUNT]]))
 
 (defn confirmation
   "Order confirmation template."
-  [order]
+  [{:keys [box number price first-name last-name email street postcode city country]}]
   (html
-    [:p "Thank you for ordering a " [:strong (:box order)] " box. "
-        "Order number: " [:strong (:number order)]]
+    [:p "Thank you for ordering a " [:strong box] " box. "
+        "Your order number is: " [:strong number]]
 
-    [:p "Please transfer " [:strong (:price order)] " to:"]
+    [:p "Please transfer " [:strong price] " to:"]
 
-    [:p "After payment receipt a " [:strong (:box order)] " box will be shiped as soon as possible to:"]
+    [:p "Bank name: "         (:bank    BANK-ACCOUNT) [:br]
+        "Country:   "         (:country BANK-ACCOUNT) [:br]
+        "Owner: "             (:owner   BANK-ACCOUNT) [:br]
+        "BIC: "               (:bic     BANK-ACCOUNT) [:br]
+        "IBAN: "              (:iban    BANK-ACCOUNT) [:br]
+        "Payment reference: " (:number order)]
+
+    [:p "After payment receipt a " [:strong box] " box will be shiped as soon as possible to:"]
     
-    [:p (str (:first-name order) " " (:last-name order)) [:br]
-        (:street order) [:br]
-        (str (:postcode order) " " (:city order)) [:br]
-        (:country order)]
+    [:p (str first-name " " last-name) [:br]
+        street [:br]
+        (str postcode " " city) [:br]
+        country]
 
     [:p "Sincerely yours" [:br]
         "Alps food box team"]))

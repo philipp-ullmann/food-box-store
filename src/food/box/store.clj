@@ -1,6 +1,6 @@
 (ns food.box.store
-  (:require [environ.core       :refer [env]]
-            [ring.adapter.jetty :refer [run-jetty]]
+  (:require [ring.adapter.jetty   :refer [run-jetty]]
+            [food.box.models.conf :refer [PORT]]
 
             [ring.middleware [params         :refer [wrap-params]]
                              [nested-params  :refer [wrap-nested-params]]
@@ -30,5 +30,5 @@
       wrap-params))
 
 (defn -main [& args]
-  (run-jetty app {:port  (Integer. (:port env))
+  (run-jetty app {:port  PORT
                   :join? false}))

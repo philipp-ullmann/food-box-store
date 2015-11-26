@@ -1,12 +1,12 @@
 (ns food.box.models.mailer
-  (:require [environ.core          :refer [env]]
-            [postal.core           :refer [send-message]]
+  (:require [postal.core           :refer [send-message]]
+            [food.box.models.conf  :refer [GMAIL-CREDENTIALS]]
             [food.box.views.mailer :as view]))
 
 (def con
   {:host "smtp.gmail.com"
-   :user (:mailer-email env)
-   :pass (:mailer-password env)
+   :user (:email    GMAIL-CREDENTIALS)
+   :pass (:password GMAIL-CREDENTIALS)
    :ssl  true})
 
 (defn send-order-confirmation!
@@ -14,9 +14,9 @@
   [order]
   (send-message
     con
-    {:from    (:mailer-email env)
+    {:from    (:email GMAIL-CREDENTIALS)
      :to      (:email order)
      :subject "Alps food box order confirmation"
 
      :body [{:type    "text/html; charset=utf-8"
-             :content (view/confirmation order)}]}))
+             :content (view/confirmation order )}]}))

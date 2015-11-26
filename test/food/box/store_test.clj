@@ -4,11 +4,11 @@
             [clojure.test          :refer :all]
             [food.box.matcher      :refer :all]
             [food.box.store        :refer [app]]
-            [food.box.models.order :as order]))
+            [food.box.models.conf  :refer [PRICES SMALL REGULAR PREMIUM]]))
 
-(def BOXES [[:#small-box   order/SMALL]
-            [:#regular-box order/REGULAR]
-            [:#premium-box order/PREMIUM]])
+(def BOXES [[:#small-box   SMALL]
+            [:#regular-box REGULAR]
+            [:#premium-box PREMIUM]])
 
 ;; PRICING
 ;; ============================================================================
@@ -16,9 +16,9 @@
 (deftest box-prices
   (-> (session app)
       (visit "/")
-      (has (some-text? (get order/PRICES order/SMALL)))
-      (has (some-text? (get order/PRICES order/REGULAR)))
-      (has (some-text? (get order/PRICES order/PREMIUM)))))
+      (has (some-text? (get PRICES SMALL)))
+      (has (some-text? (get PRICES REGULAR)))
+      (has (some-text? (get PRICES PREMIUM)))))
 
 ;; SUCCESSFUL ORDER
 ;; ============================================================================

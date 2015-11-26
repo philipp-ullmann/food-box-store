@@ -1,22 +1,24 @@
 (ns food.box.controllers.order
-  (:require [food.box.views.order  :as view]
-            [food.box.models.order :as o]
-            [bouncer.core          :as b]
-            [taoensso.timbre       :as log]
-            [crypto.random         :refer [base32]]
-            [ring.util.response    :refer [redirect]]
-            [compojure.core        :refer [defroutes GET POST]]))
+  (:require [taoensso.timbre      :as log]
+            [food.box.views.order :as view]
+            [bouncer.core         :as b]
+            [crypto.random        :refer [base32]]
+            [ring.util.response   :refer [redirect]]
+            [compojure.core       :refer [defroutes GET POST]]
+
+            [food.box.models [order :refer [validator]]
+                             [conf  :refer [PRICES]]]))
 
 (defn create
   "Validates an order and sends confirmation and notification emails."
   [order]
 
   ; VALIDATION
-  (if (b/valid? order o/validator)
+  (if (b/valid? order validator)
 
     ; SUCCESS
     (let [order (assoc order :number (base32 5)
-                             :price  (get o/PRICES (:box order)))]
+                             :price  (get PRICES (:box order)))]
 
       (log/info "Order received:" order)
 
@@ -25,7 +27,7 @@
                     (str "Thank you for your order! Order number: " (:number order)))))
 
     ; FAILED
-    (->> (b/validate order o/validator)
+    (->> (b/validate order validator)
          second
          ::b/errors
          (assoc order :errors)
