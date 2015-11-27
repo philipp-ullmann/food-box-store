@@ -1,7 +1,10 @@
 (ns food.box.models.order
   (:require [bouncer.validators      :refer [member required email]]
             [food.box.models.conf    :refer [BOXES]]
-            [food.box.models.country :refer [COUNTRIES]]))
+            [food.box.models.country :refer [COUNTRIES]]
+            
+            (clj-time [core   :as t]
+                      [format :as tf])))
 
 (def validator
   {:box             [[member BOXES :message "Unknown food box size"]]
@@ -15,3 +18,10 @@
    :country         [[required :message "Country can't be blank"]
                      [member COUNTRIES :message "Orders for the given country are not accepted"]]
    :terms-accepted  [[required :message "General business terms must be accepted"]]})
+
+(defn now
+  "Returns the current time for the timezone Europe/Vienna."
+  []
+  (tf/unparse (tf/with-zone (tf/formatter "yyyy-MM-dd HH:mm:ss")
+                            (t/time-zone-for-id "Europe/Vienna"))
+              (t/now)))

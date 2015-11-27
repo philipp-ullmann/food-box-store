@@ -1,5 +1,5 @@
 (defproject food.box.store "0.1.0-SNAPSHOT"
-  :description "Austrian food box store."
+  :description "Alps food box store."
   :url "https://bitbucket.org/philipp-ullmann/food-box-store/overview"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
@@ -10,7 +10,8 @@
                  [environ                 "1.0.1"]
                  [bouncer                 "0.3.3"]
                  [com.taoensso/timbre     "4.1.4"]
-                 [com.draines/postal      "1.11.3"]]
+                 [com.draines/postal      "1.11.3"]
+                 [clj-time                "0.11.0"]]
   :main ^:skip-aot food.box.store
   :uberjar-name "store-standalone.jar"
   :target-path "target/%s"

@@ -5,9 +5,8 @@
             [crypto.random        :refer [base32]]
             [ring.util.response   :refer [redirect]]
             [compojure.core       :refer [defroutes GET POST]]
-            [clj-time.core        :refer [now]]
 
-            [food.box.models [order  :refer [validator]]
+            [food.box.models [order  :refer [validator now]]
                              [conf   :refer [PRICES]]
                              [mailer :refer [send-order-confirmation!
                                              send-order-notification!]]]))
@@ -25,8 +24,8 @@
                              :created-at (now))]
 
       (log/info "Order received:" order)
-      (send-order-confirmation! order)
-      (send-order-notification! order)
+      ;(send-order-confirmation! order)
+      ;(send-order-notification! order)
 
       (-> (redirect "/")
           (assoc-in [:flash :notice]

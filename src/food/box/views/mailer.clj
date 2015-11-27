@@ -16,7 +16,7 @@
         "Owner: "             (:owner   BANK-ACCOUNT) [:br]
         "BIC: "               (:bic     BANK-ACCOUNT) [:br]
         "IBAN: "              (:iban    BANK-ACCOUNT) [:br]
-        "Payment reference: " (:number order)]
+        "Payment reference: " number]
 
     [:p "After payment receipt a " [:strong box] " box will be shiped as soon as possible to:"]
     
