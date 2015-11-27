@@ -19,4 +19,16 @@
      :subject "Alps food box order confirmation"
 
      :body [{:type    "text/html; charset=utf-8"
-             :content (view/confirmation order )}]}))
+             :content (view/confirmation order)}]}))
+
+(defn send-order-notification!
+  "Sends an order notification email."
+  [order]
+  (send-message
+    con
+    {:from    (:email GMAIL-CREDENTIALS)
+     :to      (:email GMAIL-CREDENTIALS)
+     :subject (str "Alps food box order: " (:number order))
+
+     :body [{:type    "text/html; charset=utf-8"
+             :content (view/notification order)}]}))
