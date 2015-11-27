@@ -7,7 +7,7 @@
             [compojure.core       :refer [defroutes GET POST]]
 
             [food.box.models [order  :refer [validator now]]
-                             [conf   :refer [PRICES]]
+                             [conf   :refer [PRICES EMAIL-ENABLED?]]
                              [mailer :refer [send-order-confirmation!
                                              send-order-notification!]]]))
 
@@ -24,8 +24,10 @@
                              :created-at (now))]
 
       (log/info "Order received:" order)
-      ;(send-order-confirmation! order)
-      ;(send-order-notification! order)
+
+      (when EMAIL-ENABLED?
+        (send-order-confirmation! order)
+        (send-order-notification! order))
 
       (-> (redirect "/")
           (assoc-in [:flash :notice]

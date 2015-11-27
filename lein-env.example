@@ -1,3 +1,4 @@
 {:port          "8080"
  :iban          "secret"
- :mail-password "secret"}
+ :mail-password "secret"
+ :environment   "test"}

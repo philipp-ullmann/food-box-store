@@ -25,6 +25,10 @@
    :iban    (:iban env)
    :country "Austria"})
 
+; EMAIL
 (def GMAIL-CREDENTIALS
   {:email    "ullmann.philipp@gmail.com"
    :password (:mail-password env)})
+
+(def EMAIL-ENABLED?
+  (not= (:environment env) "test"))
