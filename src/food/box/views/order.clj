@@ -125,7 +125,7 @@
   (layout (summary-partial order)
           [:p "An order confirmation has been sent to: "
               [:strong (:email order)]]
-          [:p [:a {:href "/" } "Main page"]
+          [:p [:a {:href "/"} "Main page"]
               " | "
               [:a {:href "javascript:window.print()"} "Print"]]))
 

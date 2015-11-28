@@ -58,7 +58,7 @@
         (check   "I've read the terms and conditions")
         (press   "Confirm")
 
-        ; PRICING PAGE
+        ; ORDER CONFIRMATION PAGE
         (has (some-text? (str "Thank you for ordering a " box-name " box.")))
         (has (some-text? (get PRICES box-name)))
         (has (some-text? (:bank BANK-ACCOUNT)))
@@ -70,7 +70,11 @@
         (has (some-text? "Boldrinigasse 1/6"))
         (has (some-text? "2500 Baden"))
         (has (some-text? "Austria"))
-        (has (some-text? "ullmann.philipp@gmail.com")))))
+        (has (some-text? "ullmann.philipp@gmail.com"))
+        (follow "Main page")
+
+        ; PRICING PAGE
+        (has (some-text? "How it works")))))
 
 ;; EMPTY ORDER FIELDS
 ;; ============================================================================
