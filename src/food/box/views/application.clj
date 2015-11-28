@@ -3,7 +3,7 @@
 
 (defn layout
   "Application layout."
-  [notice & body]
+  [& body]
   (html5
     [:head
       [:meta {:charset "utf-8"}]
@@ -38,8 +38,6 @@
           [:li.pure-menu-item [:a.pure-menu-link {:href "#"}                    "ABOUT US"]]]]
 
       [:div.banner [:hi.banner-head "SIMPLE, UNIQUE" [:br] "AND TASTY!"]]
-
-      (if notice [:div.notic notice])
 
       body
 

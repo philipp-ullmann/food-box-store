@@ -29,9 +29,7 @@
         (send-order-confirmation! order)
         (send-order-notification! order))
 
-      (-> (redirect "/")
-          (assoc-in [:flash :notice]
-                    (str "Thank you for your order! Order number: " (:number order)))))
+      (view/create order))
 
     ; FAILED
     (->> (b/validate order validator)

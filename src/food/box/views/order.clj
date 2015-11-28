@@ -1,6 +1,7 @@
 (ns food.box.views.order
   (:require [food.box.views.application :refer :all]
-            [food.box.models.country    :refer [COUNTRIES]]))
+            [food.box.models.country    :refer [COUNTRIES]]
+            [food.box.models.conf       :refer [BANK-ACCOUNT]]))
 
 (defn- country-options
   "Returns the option tags for all available countries."
@@ -94,3 +95,37 @@
                                      " I've read the terms and conditions"]]
       
             [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]]]]]))
+
+(defn summary-partial
+  "Order summary and payment instruction for the customer."
+  [{:keys [box number price first-name last-name email street postcode city country]}]
+  [:div
+    [:p "Thank you for ordering a " [:strong box] " box. "
+        "Your order number is: " [:strong number]]
+
+    [:p "Please transfer " [:strong price] " to:"]
+
+    [:p "Bank name: "         (:bank    BANK-ACCOUNT) [:br]
+        "Country:   "         (:country BANK-ACCOUNT) [:br]
+        "Owner: "             (:owner   BANK-ACCOUNT) [:br]
+        "BIC: "               (:bic     BANK-ACCOUNT) [:br]
+        "IBAN: "              (:iban    BANK-ACCOUNT) [:br]
+        "Payment reference: " number]
+
+    [:p "After payment receipt a " [:strong box] " box will be shiped as soon as possible to:"]
+    
+    [:p (str first-name " " last-name) [:br]
+        street [:br]
+        (str postcode " " city) [:br]
+        country]])
+
+(defn create
+  "Renders an order confirmation message."
+  [order]
+  (layout (summary-partial order)
+          [:p "An order confirmation has been sent to: "
+              [:strong (:email order)]]
+          [:p [:a {:href "/" } "Main page"]
+              " | "
+              [:a {:href "javascript:window.print()"} "Print"]]))
+

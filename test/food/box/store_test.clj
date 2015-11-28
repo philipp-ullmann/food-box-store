@@ -4,7 +4,8 @@
             [clojure.test          :refer :all]
             [food.box.matcher      :refer :all]
             [food.box.store        :refer [app]]
-            [food.box.models.conf  :refer [PRICES SMALL REGULAR PREMIUM]]))
+            [food.box.models.conf  :refer [PRICES SMALL REGULAR PREMIUM
+                                           BANK-ACCOUNT]]))
 
 (def BOXES [[:#small-box   SMALL]
             [:#regular-box REGULAR]
@@ -58,9 +59,18 @@
         (press   "Confirm")
 
         ; PRICING PAGE
-        (follow-redirect)
-        (has (some-text? "How it works"))
-        (has (some-text? "Thank you for your order! Order number: ")))))
+        (has (some-text? (str "Thank you for ordering a " box-name " box.")))
+        (has (some-text? (get PRICES box-name)))
+        (has (some-text? (:bank BANK-ACCOUNT)))
+        (has (some-text? (:country BANK-ACCOUNT)))
+        (has (some-text? (:owner BANK-ACCOUNT)))
+        (has (some-text? (:bic BANK-ACCOUNT)))
+        (has (some-text? (:iban BANK-ACCOUNT)))
+        (has (some-text? "Philipp Ullmann"))
+        (has (some-text? "Boldrinigasse 1/6"))
+        (has (some-text? "2500 Baden"))
+        (has (some-text? "Austria"))
+        (has (some-text? "ullmann.philipp@gmail.com")))))
 
 ;; EMPTY ORDER FIELDS
 ;; ============================================================================
