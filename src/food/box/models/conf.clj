@@ -1,5 +1,6 @@
 (ns food.box.models.conf
-  (:require [environ.core :refer [env]]))
+  (:require [environ.core   :refer [env]]
+            [clojure.string :refer [blank?]]))
 
 ; PORT
 (def PORT (Integer. (:port env)))
@@ -31,4 +32,4 @@
    :password (:mail-password env)})
 
 (def EMAIL-ENABLED?
-  (not= (:environment env) "test"))
+  (not (blank? (:mail-password env))))
