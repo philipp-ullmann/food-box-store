@@ -94,7 +94,9 @@
                                       :checked terms-accepted}
                                      " I've read the terms and conditions"]]
       
-            [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]]]]]))
+            [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]
+            " | "
+            [:a {:href "/"} "Cancel"]]]]]))
 
 (defn summary-partial
   "Order summary and payment instruction for the customer."

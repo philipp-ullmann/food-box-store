@@ -76,6 +76,37 @@
         ; PRICING PAGE
         (has (some-text? "How it works")))))
 
+;; ABORT ORDER
+;; ============================================================================
+
+(deftest abort-box-order
+  (doseq [[box-id box-name] BOXES]
+
+    (-> (session app)
+        (visit "/")
+
+        ; CHOOSE BOX
+        (within [box-id]
+          (press "Choose"))
+
+        (has (some-text? (str "Order \"" box-name "\" box")))
+
+        ; FIELD VALUES
+        (has (value?         [:input#box]       box-name))
+        (has (value?         "First Name *"     ""))
+        (has (value?         "Last Name *"      ""))
+        (has (value?         "Email Address *"  ""))
+        (has (value?         "Street *"         ""))
+        (has (value?         "Postcode / Zip *" ""))
+        (has (value?         "Town / City *"    ""))
+        (has (no-selections? "Country *"))
+        (has (unchecked?     "I've read the terms and conditions"))
+
+        (follow "Cancel")
+
+        ; PRICING PAGE
+        (has (some-text? "How it works")))))
+
 ;; EMPTY ORDER FIELDS
 ;; ============================================================================
 
