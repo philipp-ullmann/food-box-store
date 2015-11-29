@@ -44,3 +44,17 @@
       [:div.footer.l-box
         [:p
          [:a {:href "#"} "Try now"] " no credit card required"]]]))
+
+(defn error
+  "Error dialog box."
+  [header body]
+  (html5
+    [:head
+      [:meta {:charset "utf-8"}]
+      [:title header]
+      (include-css "/css/error.css")]
+    [:body
+      [:div.dialog
+        [:h1 header]]
+      [:p body [:br] [:br]
+          [:a {:href "/"} "<< Store"]]]))
