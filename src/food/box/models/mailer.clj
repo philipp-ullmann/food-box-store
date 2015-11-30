@@ -40,7 +40,7 @@
     con
     {:from    (:email GMAIL-CREDENTIALS)
      :to      (:email GMAIL-CREDENTIALS)
-     :subject "Alps food box exception"
-     :body    (str (.getMessage exception)
+     :subject (str "Alps food box exception: " exeption)
+     :body    (str exception
                    "\n\n"
                    (apply str (interpose "\n" (.getStackTrace exception))))}))
