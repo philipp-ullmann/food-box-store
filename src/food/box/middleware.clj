@@ -1,8 +1,10 @@
 (ns food.box.middleware
   (:require [taoensso.timbre            :as log]
             [ring.util.response         :refer [response]]
-            [food.box.models.mailer     :refer [send-exception-notification!]]
-            [food.box.views.application :as view]))
+            [food.box.views.application :as view]
+
+            [food.box.models [conf   :refer [EMAIL-ENABLED?]]
+                             [mailer :refer [send-exception-notification!]]]))
 
 (defn wrap-exception
   "Handles an application exception."
@@ -11,7 +13,10 @@
     (try (handler req)
       (catch Throwable t
         (log/error t)
-        (send-exception-notification! t)
+
+        (when EMAIL-ENABLED?
+          (send-exception-notification! t))
+
         (response
           (view/error
             "We're sorry, but something went wrong."
