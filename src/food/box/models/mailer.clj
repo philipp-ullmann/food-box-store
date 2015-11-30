@@ -32,3 +32,13 @@
 
      :body [{:type    "text/html; charset=utf-8"
              :content (view/notification order)}]}))
+
+(defn send-exception-notification!
+  "Sends an order notification email."
+  [exception]
+  (send-message
+    con
+    {:from    (:email GMAIL-CREDENTIALS)
+     :to      (:email GMAIL-CREDENTIALS)
+     :subject "Alps food box exception"
+     :body    exception}))
