@@ -1,11 +1,12 @@
 (ns food.box.controllers.order
   (:require [taoensso.timbre      :as log]
             [food.box.views.order :as view]
-            [bouncer.core         :as b]
+            [bouncer.core         :refer [valid?]]
             [crypto.random        :refer [base32]]
             [compojure.core       :refer [defroutes GET POST]]
 
-            [food.box.models [order  :refer [validator now]]
+            [food.box.models [utils  :refer [assoc-errors now]]
+                             [order  :refer [validator]]
                              [conf   :refer [PRICES EMAIL-ENABLED?]]
                              [mailer :refer [send-order-confirmation!
                                              send-order-notification!]]]))
@@ -15,7 +16,7 @@
   [order]
 
   ; VALIDATION
-  (if (b/valid? order validator)
+  (if (valid? order validator)
 
     ; SUCCESS
     (let [order (assoc order :number     (base32 5)
@@ -31,11 +32,7 @@
       (view/create order))
 
     ; FAILED
-    (->> (b/validate order validator)
-         second
-         ::b/errors
-         (assoc order :errors)
-         view/show)))
+    (view/show (assoc-errors order validator))))
 
 (defroutes routes
   (GET  "/order" [box]   (view/show {:box box}))

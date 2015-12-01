@@ -1,9 +1,11 @@
 (ns food.box.controllers.contact
-  (:require [food.box.views.contact :as view]
-            [bouncer.core           :as b]
+  (:require [taoensso.timbre        :as log]
+            [food.box.views.contact :as view]
+            [bouncer.core           :refer [valid?]]
             [compojure.core         :refer [defroutes GET POST]]
 
-            [food.box.models [contact :refer [validator]]
+            [food.box.models [utils   :refer [assoc-errors now]]
+                             [contact :refer [validator]]
                              [conf    :refer [EMAIL-ENABLED?]]
                              [mailer  :refer [send-contact-message!]]]))
 
@@ -12,20 +14,20 @@
   [contact]
 
   ; VALIDATION
-  (if (b/valid? contact validator)
+  (if (valid? contact validator)
 
     ; SUCCESS
-    (when EMAIL-ENABLED?
-      (send-contact-message! contact))
+    (let [contact (assoc contact :created-at (now))]
 
-    (view/create contact)
+      (log/info "Message received:" (select-keys contact [:name :email]))
+
+      (when EMAIL-ENABLED?
+        (send-contact-message! contact))
+
+      (view/create contact))
 
     ; FAILED
-    (->> (b/validate contact validator)
-         second
-         ::b/errors
-         (assoc contact :errors)
-         view/show)))
+    (view/show (assoc-errors contact validator))))
 
 (defroutes routes
   (GET  "/contact" []        (view/show))

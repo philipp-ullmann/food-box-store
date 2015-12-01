@@ -26,9 +26,17 @@
     [:p "Created at: "    created-at]))
 
 (defn exception
-  "Exception message."
+  "Exception message template."
   [exception]
   (html
     [:p [:strong exception]]
     [:p (interpose [:br] (.getStackTrace exception))]))
 
+(defn contact
+  "Contact message template."
+  [{:keys [name email created-at message]}]
+  (html
+    [:p "Name: "       name]
+    [:p "Email: "      email]
+    [:p "Created at: " created-at]
+    [:p message]))

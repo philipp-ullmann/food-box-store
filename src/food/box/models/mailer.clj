@@ -53,4 +53,5 @@
     {:from    (:email contact)
      :to      (:email GMAIL-CREDENTIALS)
      :subject (str "Alps food box message: " (:name contact))
-     :body    (:message contact)}))
+     :body [{:type    "text/html; charset=utf-8"
+             :content (view/contact contact)}]}))
