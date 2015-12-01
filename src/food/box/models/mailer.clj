@@ -42,3 +42,13 @@
      :to      (:email GMAIL-CREDENTIALS)
      :subject "Alps food box exception"
      :body    exception}))
+
+(defn send-contact-message!
+  "Sends a contact message email."
+  [contact]
+  (send-message
+    con
+    {:from    (:email contact)
+     :to      (:email GMAIL-CREDENTIALS)
+     :subject (str "Alps food box message: " (:name contact))
+     :body    (:message contact)}))

@@ -3,7 +3,6 @@
             [food.box.views.order :as view]
             [bouncer.core         :as b]
             [crypto.random        :refer [base32]]
-            [ring.util.response   :refer [redirect]]
             [compojure.core       :refer [defroutes GET POST]]
 
             [food.box.models [order  :refer [validator now]]
