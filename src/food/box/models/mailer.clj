@@ -40,10 +40,10 @@
     con
     {:from    (:email GMAIL-CREDENTIALS)
      :to      (:email GMAIL-CREDENTIALS)
-     :subject (str "Alps food box exception: " exeption)
-     :body    (str exception
-                   "\n\n"
-                   (apply str (interpose "\n" (.getStackTrace exception))))}))
+     :subject (str "Alps food box exception: " exception)
+
+     :body [{:type    "text/html; charset=utf-8"
+             :content (view/exception exception)}]}))
 
 (defn send-contact-message!
   "Sends a contact message email."

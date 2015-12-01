@@ -24,3 +24,11 @@
     [:p "City: "          city]
     [:p "Country: "       country]
     [:p "Created at: "    created-at]))
+
+(defn exception
+  "Exception message."
+  [exception]
+  (html
+    [:p [:strong exception]]
+    [:p (interpose [:br] (.getStackTrace exception))]))
+

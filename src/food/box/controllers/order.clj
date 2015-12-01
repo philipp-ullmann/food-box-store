@@ -14,8 +14,6 @@
   "Validates an order and sends confirmation and notification emails."
   [order]
 
-  (throw (Exception. "my exception message")) 
-
   ; VALIDATION
   (if (b/valid? order validator)
 
