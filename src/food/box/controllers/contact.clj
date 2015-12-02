@@ -9,7 +9,7 @@
                              [conf    :refer [EMAIL-ENABLED?]]
                              [mailer  :refer [send-contact-message!]]]))
 
-(defn create
+(defn create!
   "Validates a contact message and forwards the message via email."
   [contact]
 
@@ -24,11 +24,11 @@
       (when EMAIL-ENABLED?
         (send-contact-message! contact))
 
-      (view/create contact))
+      (view/created))
 
     ; FAILED
     (view/show (assoc-errors contact validator))))
 
 (defroutes routes
   (GET  "/contact" []        (view/show))
-  (POST "/contact" [contact] (create contact)))
+  (POST "/contact" [contact] (create! contact)))

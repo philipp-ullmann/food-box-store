@@ -58,3 +58,8 @@
         [:h1 header]]
       [:p body [:br] [:br]
           [:a {:href "/"} "<< Store"]]]))
+
+(defn errors-for
+  "Renders all errors for an attribute."
+  [errors]
+  (when errors (map #(vector :li %) errors)))

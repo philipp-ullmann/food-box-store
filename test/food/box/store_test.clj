@@ -249,3 +249,30 @@
       (has (value?    "Town / City *"    "Baden"))
       (has (selected? "Country *",       "Austria"))
       (has (checked?  "I've read the terms and conditions"))))
+
+;; SUCCESSFUL CONTACT
+;; ============================================================================
+
+(deftest successful-contact-message
+  (-> (session app)
+      (visit "/contact")
+
+      (has (some-text? "Contact"))
+
+      ; FIELD VALUES
+      (has (value? "Name *"          ""))
+      (has (value? "Email Address *" ""))
+      (has (value? "Message *"       ""))
+
+      ; FILL IN
+      (fill-in "Name *"          "Philipp Ullmann")
+      (fill-in "Email Address *" "ullmann.philipp@gmail.com")
+      (fill-in "Message *"       "I have some questions")
+      (press   "Send")
+
+      ; ORDER CONFIRMATION PAGE
+      (has (some-text? "Thank you for your message!"))
+      (follow "Main page")
+
+      ; PRICING PAGE
+      (has (some-text? "How it works"))))

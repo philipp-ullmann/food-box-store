@@ -9,11 +9,6 @@
   (map #(vector :option {:selected (= current %)} %)
        COUNTRIES))
 
-(defn- errors-for
-  "Renders all errors for an attribute."
-  [errors]
-  (when errors (map #(vector :li %) errors)))
-
 (defn show
   "Renders the order formular."
   [{:keys [box first-name last-name email street postcode city country terms-accepted errors]}]

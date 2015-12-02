@@ -12,13 +12,15 @@
                        [route :refer [resources not-found]]]
 
             [food.box.controllers [pricing :as pricing]
-                                  [order   :as order]])
+                                  [order   :as order]
+                                  [contact :as contact]])
             
   (:gen-class))
 
 (defroutes routes
   pricing/routes
   order/routes
+  contact/routes
   (resources "/")
   (not-found
     (view/error
