@@ -81,14 +81,15 @@
             [:label {:for "country"} "Country *"]
             [:select#country {:name "order[country]"}
                              (country-options country)]]
+
       
-          [:div.pure-control-group
+          [:div.pure-controls
             [:label.pure-checkbox {:for "terms-accepted"}
               [:input#terms-accepted {:type    "checkbox"
                                       :name    "order[terms-accepted]"
                                       :checked terms-accepted}
                                      " I've read the terms and conditions"]]
-      
+
             [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]
             " | "
             [:a {:href "/"} "Cancel"]]]]]))

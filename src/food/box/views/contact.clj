@@ -35,9 +35,11 @@
             [:label {:for "message"} "Message *"]
             [:textarea#message {:name     "contact[message]"
                                 :value    message
-                                :required true}]]
+                                :required true
+                                :cols     50
+                                :rows     8}]]
 
-          [:div.pure-control-group
+          [:div.pure-controls
             [:button.pure-button.pure-button-primary {:type "submit"} "Send"]
             " | "
             [:a {:href "/"} "Cancel"]]]]])))
