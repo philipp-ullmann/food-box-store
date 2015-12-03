@@ -260,9 +260,9 @@
       (has (some-text? "Contact"))
 
       ; FIELD VALUES
-      (has (value? "Name *"          ""))
-      (has (value? "Email Address *" ""))
-      (has (value? "Message *"       ""))
+      (has (value?   "Name *"          ""))
+      (has (value?   "Email Address *" ""))
+      (has (content? "Message *"       ""))
 
       ; FILL IN
       (fill-in "Name *"          "Philipp Ullmann")
@@ -276,3 +276,64 @@
 
       ; PRICING PAGE
       (has (some-text? "How it works"))))
+
+;; EMPTY CONTACT FIELDS
+;; ============================================================================
+
+(deftest failing-contact-message-due-to-missing-fields
+  (-> (session app)
+      (visit "/contact")
+
+      (has (some-text? "Contact"))
+
+      ; FIELD VALUES
+      (has (value?   "Name *"          ""))
+      (has (value?   "Email Address *" ""))
+      (has (content? "Message *"       ""))
+
+      ; FILL IN
+      (press "Send")
+
+      ; ORDER CONFIRMATION PAGE
+      (has (some-text? "Contact"))
+
+      ; VALIDATION ERRORS
+      (has (some-text? "Name can't be blank"))
+      (has (some-text? "Email Address can't be blank"))
+      (has (some-text? "Message can't be blank"))
+
+      ; FIELD VALUES
+      (has (value?   "Name *"          ""))
+      (has (value?   "Email Address *" ""))
+      (has (content? "Message *"       ""))))
+
+;; INVALID EMAIL ADDRESS
+;; ============================================================================
+
+(deftest failing-contact-message-due-to-invalid-email-address
+  (-> (session app)
+      (visit "/contact")
+
+      (has (some-text? "Contact"))
+
+      ; FIELD VALUES
+      (has (value?   "Name *"          ""))
+      (has (value?   "Email Address *" ""))
+      (has (content? "Message *"       ""))
+
+      ; FILL IN
+      (fill-in "Name *"          "Philipp Ullmann")
+      (fill-in "Email Address *" "ullmann.philippgmail.com")
+      (fill-in "Message *"       "I have some questions")
+      (press "Send")
+
+      ; ORDER CONFIRMATION PAGE
+      (has (some-text? "Contact"))
+
+      ; VALIDATION ERRORS
+      (has (some-text? "Email Address must be a valid address"))
+
+      ; FIELD VALUES
+      (has (value?   "Name *"          "Philipp Ullmann"))
+      (has (value?   "Email Address *" "ullmann.philippgmail.com"))
+      (has (content? "Message *"       "I have some questions"))))

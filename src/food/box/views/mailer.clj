@@ -1,18 +1,19 @@
 (ns food.box.views.mailer
-  (:require [hiccup.core          :refer [html]]
+  (:require [hiccup.page          :refer [html5]]
             [food.box.views.order :refer [summary-partial]]))
 
 (defn confirmation
   "Order confirmation template."
   [order]
-  (html (summary-partial order)
-        [:p "Sincerely yours" [:br]
-            "Alps food box team"]))
+  (html5
+    (summary-partial order)
+    [:p "Sincerely yours" [:br]
+        "Alps food box team"]))
 
 (defn notification
   "Order notification template."
   [{:keys [box number price created-at first-name last-name email street postcode city country]}]
-  (html
+  (html5
     [:p "Order number: "  number]
     [:p "Box size: "      box]
     [:p "Price: "         price]
@@ -28,14 +29,14 @@
 (defn exception
   "Exception message template."
   [exception]
-  (html
+  (html5
     [:p [:strong exception]]
     [:p (interpose [:br] (.getStackTrace exception))]))
 
 (defn contact
   "Contact message template."
   [{:keys [name email created-at message]}]
-  (html
+  (html5
     [:p "Name: "       name]
     [:p "Email: "      email]
     [:p "Created at: " created-at]

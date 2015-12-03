@@ -34,10 +34,10 @@
           [:div.pure-control-group
             [:label {:for "message"} "Message *"]
             [:textarea#message {:name     "contact[message]"
-                                :value    message
                                 :required true
-                                :cols     50
-                                :rows     8}]]
+                                :rows     "8"
+                                :cols     "50"}
+                               message]]
 
           [:div.pure-controls
             [:button.pure-button.pure-button-primary {:type "submit"} "Send"]
