@@ -12,7 +12,7 @@
 (defn show
   "Displays the pricing table."
   []
-  (layout
+  (layout true
     [:div.l-content
       
       ; PRICES
@@ -85,7 +85,7 @@
         [:div.pure-u-1.pure-u-md-1-2
           [:div.l-box
             [:h3.information-head "Payment"]
-            [:p "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse."]]]
+            [:p "After a successful order, you will receive an order confirmation with the bank account information via email. We well immediately ship the alps food box after receipt of the payment."]]]
 
         ; SUPPORT
         [:div.pure-u-1.pure-u-md-1-2

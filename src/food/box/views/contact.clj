@@ -6,7 +6,7 @@
   ([] (show {}))
 
   ([{:keys [name email message errors]}]
-  (layout
+  (layout false
     [:div.l-box
       [:h1 "Contact"]
 
@@ -47,6 +47,6 @@
 (defn created
   "Renders a confirmation message."
   []
-  (layout
+  (layout false
     [:p "Thank you for your message!"
         [:a {:href "/"} "Main page"]]))

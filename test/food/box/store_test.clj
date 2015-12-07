@@ -34,7 +34,7 @@
         (within [box-id]
           (press "Choose"))
 
-        (has (some-text? (str "Order \"" box-name "\" box")))
+        (has (some-text? (str "Order a \"" box-name "\" box")))
 
         ; FIELD VALUES
         (has (value?         [:input#box]       box-name))
@@ -89,7 +89,7 @@
         (within [box-id]
           (press "Choose"))
 
-        (has (some-text? (str "Order \"" box-name "\" box")))
+        (has (some-text? (str "Order a \"" box-name "\" box")))
 
         ; FIELD VALUES
         (has (value?         [:input#box]       box-name))
@@ -120,7 +120,7 @@
         (within [box-id]
           (press "Choose"))
 
-        (has (some-text? (str "Order \"" box-name "\" box")))
+        (has (some-text? (str "Order a \"" box-name "\" box")))
 
         ; FIELD VALUES
         (has (value?         [:input#box]       box-name))
@@ -167,7 +167,7 @@
         (within [box-id]
           (press "Choose"))
 
-        (has (some-text? (str "Order \"" box-name "\" box")))
+        (has (some-text? (str "Order a \"" box-name "\" box")))
 
         ; FIELD VALUES
         (has (value?         [:input#box]       box-name))
@@ -212,7 +212,7 @@
   (-> (session app)
       (visit "/order?box=unknown")
 
-      (has (some-text? "Order \"unknown\" box"))
+      (has (some-text? "Order a \"unknown\" box"))
 
       ; FIELD VALUES
       (has (value?         [:input#box]       "unknown"))
