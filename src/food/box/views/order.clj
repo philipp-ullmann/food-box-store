@@ -88,7 +88,10 @@
               [:input#terms-accepted {:type    "checkbox"
                                       :name    "order[terms-accepted]"
                                       :checked terms-accepted}
-                                     " I've read the terms and conditions"]]
+
+                                     " I've read the "
+                                     [:a {:href "/terms_and_conditions"}
+                                         "terms and conditions"]]]
 
             [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]
             " | "

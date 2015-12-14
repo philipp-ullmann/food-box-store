@@ -13,7 +13,8 @@
 
             [food.box.controllers [pricing :as pricing]
                                   [order   :as order]
-                                  [contact :as contact]])
+                                  [contact :as contact]
+                                  [terms   :as terms]])
             
   (:gen-class))
 
@@ -21,6 +22,7 @@
   pricing/routes
   order/routes
   contact/routes
+  terms/routes
   (resources "/")
   (not-found
     (view/error

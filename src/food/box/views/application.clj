@@ -43,7 +43,8 @@
 
       [:div.footer.l-box
         [:p
-         [:a {:href "#"} "Try now"] " no credit card required"]]]))
+         "Please read the "
+         [:a {:href "/terms_and_conditions"} "terms and conditions"]]]]))
 
 (defn error
   "Error dialog box."
