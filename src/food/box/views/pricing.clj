@@ -79,22 +79,22 @@
         [:div.pure-u-1.pure-u-md-1-2
           [:div.l-box
             [:h3.information-head "How it works"]
-            [:p "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."]]]
+            [:p "You choose one of the alps food box sizes. Provide the shipping information and confirm the order. You will receive immediately a confirmation email with a summary of your order and an order number. After receipt of payment, we will ship the alps food box."]]]
 
         ; PAYMENT
         [:div.pure-u-1.pure-u-md-1-2
           [:div.l-box
             [:h3.information-head "Payment"]
-            [:p "After a successful order, you will receive an order confirmation with the bank account information via email. We well immediately ship the alps food box after receipt of the payment."]]]
+            [:p "After a successful order, you will receive an order confirmation with the bank account information via email. Please provide the order number under payment reference on the transaction. At the time no credit card payment is possible. Soon paypal payment will be supported."]]]
 
         ; SUPPORT
         [:div.pure-u-1.pure-u-md-1-2
           [:div.l-box
             [:h3.information-head "Customer support"]
-            [:p "Cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]]]
+            [:p "If you have any further questions, please feel free to " [:a {:href "/contact"} "contact"] " us. You will receive an answer within a few days."]]]
 
         ; DELIVERY
         [:div.pure-u-1.pure-u-md-1-2
           [:div.l-box
             [:h3.information-head "DELIVERY"]
-            [:p "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."]]]]]))
+            [:p "We will immediately ship the alps food box after receipt of the payment. The delivery time depends on your location. It can last 1 to 2 weeks."]]]]]))
