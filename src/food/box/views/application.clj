@@ -31,11 +31,10 @@
 
     [:body
       [:div.pure-menu.pure-menu-horizontal
-        [:a.pure-menu-heading {:href "#"} "LOGO"]
         [:ul.pure-menu-list
-          [:li.pure-menu-item.pure-menu-selected [:a.pure-menu-link {:href "/"} "TYPES OF BOXES"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"}             "CONTACT"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "#"}                    "ABOUT US"]]]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/"}        "TYPES OF BOXES"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "CONTACT"]]
+          [:li.pure-menu-item [:a.pure-menu-link {:href "#"}        "ABOUT US"]]]]
 
       (if banner? [:div.banner [:hi.banner-head "SIMPLE, UNIQUE" [:br] "AND TASTY!"]])
 
