@@ -3,4 +3,4 @@
             [compojure.core         :refer [defroutes GET]]))
 
 (defroutes routes
-  (GET "/" [] (view/show)))
+  (GET "/" [] view/show))

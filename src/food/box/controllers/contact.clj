@@ -24,7 +24,7 @@
       (when EMAIL-ENABLED?
         (send-contact-message! contact))
 
-      (view/created))
+      view/created)
 
     ; FAILED
     (view/show (assoc-errors contact validator))))

@@ -1,9 +1,8 @@
 (ns food.box.views.terms
   (:require [food.box.views.application :refer :all]))
 
-(defn show
+(def show
   "Shows the terms and conditions web page."
-  []
   (layout false
     [:div.l-box
       [:h1 "Terms and Conditions"]

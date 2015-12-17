@@ -44,9 +44,8 @@
             " | "
             [:a {:href "/"} "Cancel"]]]]])))
 
-(defn created
+(def created
   "Renders a confirmation message."
-  []
   (layout false
     [:p "Thank you for your message!"
         [:a {:href "/"} "Main page"]]))

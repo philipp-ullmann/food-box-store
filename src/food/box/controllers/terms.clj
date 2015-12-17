@@ -3,4 +3,4 @@
             [food.box.views.terms :as view]))
 
 (defroutes routes
-  (GET "/terms_and_conditions" [] (view/show)))
+  (GET "/terms_and_conditions" [] view/show))
