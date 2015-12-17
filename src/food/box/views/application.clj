@@ -9,7 +9,7 @@
       [:meta {:charset "utf-8"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
       [:meta {:name "description" :content "A web store to sell austrian food boxes in different sizes."}]
-      [:title "Austrian food box"]
+      [:title "Austrian alps food box"]
       (include-css "http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
       (include-css "/css/application.css")
 
@@ -36,7 +36,7 @@
           [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "CONTACT"]]
           [:li.pure-menu-item [:a.pure-menu-link {:href "#"}        "ABOUT US"]]]]
 
-      (if banner? [:div.banner [:hi.banner-head "SIMPLE, UNIQUE" [:br] "AND TASTY!"]])
+      (if banner? [:div.banner [:hi.banner-head "AUSTRIAN ALPS" [:br] "TASTY FOOD BOX!"]])
 
       body
 

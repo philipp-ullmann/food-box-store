@@ -8,7 +8,7 @@
   (html5
     (summary-partial order)
     [:p "Sincerely yours" [:br]
-        "Alps food box team"]))
+        "AUSTRIAN ALPS FOOD BOX team"]))
 
 (defn notification
   "Order notification template."
