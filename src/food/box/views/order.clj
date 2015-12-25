@@ -1,12 +1,13 @@
 (ns food.box.views.order
-  (:require [food.box.views.application :refer :all]
+  (:require [clojure.string             :refer [blank?]]
+            [food.box.views.application :refer :all]
             [food.box.models.country    :refer [COUNTRIES]]
             [food.box.models.conf       :refer [BANK-ACCOUNT]]))
 
 (defn- country-options
   "Returns the option tags for all available countries."
   [current]
-  (map #(vector :option {:value (first %) :selected (= current (first %))} (second %))
+  (map #(vector :option {:value (first %) :selected (if (= current (first %)) "selected")} (second %))
        COUNTRIES))
 
 (defn show
@@ -82,6 +83,8 @@
             [:select#country {:name "order[country]"}
                              (country-options country)]]
 
+          (if (blank? country)
+            [:script {:type "text/javascript"} "select_current_country();"])
       
           [:div.pure-controls
             [:label.pure-checkbox {:for "terms-accepted"}

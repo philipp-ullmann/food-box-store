@@ -5,11 +5,12 @@
             [crypto.random        :refer [base32]]
             [compojure.core       :refer [defroutes GET POST]]
 
-            [food.box.models [utils  :refer [assoc-errors now]]
-                             [order  :refer [validator]]
-                             [conf   :refer [PRICES EMAIL-ENABLED?]]
-                             [mailer :refer [send-order-confirmation!
-                                             send-order-notification!]]]))
+            [food.box.models [country :refer [COUNTRIES]]
+                             [utils   :refer [assoc-errors now]]
+                             [order   :refer [validator]]
+                             [conf    :refer [PRICES EMAIL-ENABLED?]]
+                             [mailer  :refer [send-order-confirmation!
+                                              send-order-notification!]]]))
 
 (defn create
   "Validates an order and sends confirmation and notification emails."
@@ -19,7 +20,8 @@
   (if (valid? order validator)
 
     ; SUCCESS
-    (let [order (assoc order :number     (base32 5)
+    (let [order (assoc order :country    (get COUNTRIES (:country order))
+                             :number     (base32 5)
                              :price      (get PRICES (:box order))
                              :created-at (now))]
 
