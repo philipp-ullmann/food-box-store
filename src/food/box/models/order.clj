@@ -13,5 +13,5 @@
    :postcode        [[required :message "Postcode / Zip can't be blank"]]
    :city            [[required :message "Town / City can't be blank"]]
    :country         [[required :message "Country can't be blank"]
-                     [member COUNTRIES :message "Orders for the given country are not accepted"]]
+                     [member (keys COUNTRIES) :message "Orders for the given country are not accepted"]]
    :terms-accepted  [[required :message "General business terms must be accepted"]]})

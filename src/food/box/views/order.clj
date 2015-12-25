@@ -6,7 +6,7 @@
 (defn- country-options
   "Returns the option tags for all available countries."
   [current]
-  (map #(vector :option {:selected (= current %)} %)
+  (map #(vector :option {:value (first %) :selected (= current (first %))} (second %))
        COUNTRIES))
 
 (defn show

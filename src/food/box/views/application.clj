@@ -1,5 +1,5 @@
 (ns food.box.views.application
-  (:require [hiccup.page :refer (html5 include-css)]))
+  (:require [hiccup.page :refer (html5 include-js include-css)]))
 
 (defn layout
   "Application layout."
@@ -10,6 +10,8 @@
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
       [:meta {:name "description" :content "A web store to sell austrian food boxes in different sizes."}]
       [:title "Austrian alps food box"]
+      (include-js "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+      (include-js "/js/application.js")
       (include-css "http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
       (include-css "/css/application.css")
 
