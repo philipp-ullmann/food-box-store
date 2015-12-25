@@ -16,4 +16,8 @@
   :uberjar-name "store-standalone.jar"
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
-             :test    {:dependencies [[kerodon "0.7.0"]]}})
+             :dev     {:dependencies [[kerodon   "0.7.0"]]
+                       :plugins      [[lein-ring "0.9.7"]]
+
+                       :ring {:handler food.box.store/app
+                              :port    8080}}})
