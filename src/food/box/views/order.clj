@@ -12,8 +12,8 @@
 
 (defn show
   "Renders the order formular."
-  [{:keys [box first-name last-name email street postcode city country terms-accepted errors]}]
-  (layout false
+  [{:keys [box first-name last-name email street postcode city country terms-accepted errors]} conf]
+  (layout conf 
     [:div.l-box
       [:h1 "Order a \"" box "\" box"]
 
@@ -126,12 +126,14 @@
 
 (defn create
   "Renders an order confirmation message."
-  [order]
-  (layout false
-    (summary-partial order)
-    [:p "An order confirmation has been sent to: "
-        [:strong (:email order)]]
-    [:p [:a {:href "/"} "Main page"]
-        " | "
-        [:a {:href "javascript:window.print()"} "Print"]]))
+  [order conf]
+  (layout conf
+    [:div.l-box
+      (summary-partial order)
+
+      [:p "An order confirmation has been sent to: "
+          [:strong (:email order)]]
+      [:p [:a {:href "/"} "<< Main page"]
+          " | "
+          [:a {:href "javascript:window.print()"} "Print"]]]))
 

@@ -1,9 +1,14 @@
 (ns food.box.views.application
   (:require [hiccup.page :refer (html5 include-js include-css)]))
 
+(defn- menu-item [name url selected?]
+  (let [classes (if selected? "pure-menu-item pure-menu-selected"
+                              "pure-menu-item")]
+    [:li {:class classes} [:a.pure-menu-link {:href url} name]]))
+
 (defn layout
   "Application layout."
-  [banner? & body]
+  [{:keys [banner? menu-types? menu-contact? menu-about?]} & body]
   (html5
     [:head
       [:meta {:charset "utf-8"}]
@@ -34,9 +39,9 @@
     [:body
       [:div.pure-menu.pure-menu-horizontal
         [:ul.pure-menu-list
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/"}        "TYPES OF BOXES"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "/contact"} "CONTACT"]]
-          [:li.pure-menu-item [:a.pure-menu-link {:href "#"}        "ABOUT US"]]]]
+          (menu-item "TYPES OF BOXES" "/"        menu-types?)
+          (menu-item "CONTACT"        "/contact" menu-contact?)
+          (menu-item "ABOUT US"       "#"        menu-about?)]]
 
       (if banner? [:div.banner [:hi.banner-head "AUSTRIAN ALPS" [:br] "TASTY FOOD BOX!"]])
 

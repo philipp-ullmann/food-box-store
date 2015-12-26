@@ -9,9 +9,10 @@
     [:input {:type "hidden" :name "box" :value value}]
     [:button.button-choose.pure-button {:type "submit"} "Choose"]])
 
-(def show
+(defn show
   "Displays the pricing table."
-  (layout true
+  [conf]
+  (layout conf
     [:div.l-content
       
       ; PRICES

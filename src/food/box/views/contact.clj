@@ -3,10 +3,10 @@
 
 (defn show
   "Renders the contact formular."
-  ([] (show {}))
+  ([conf] (show {} conf))
 
-  ([{:keys [name email message errors]}]
-  (layout false
+  ([{:keys [name email message errors]} conf]
+  (layout conf
     [:div.l-box
       [:h1 "Contact"]
 
@@ -44,8 +44,11 @@
             " | "
             [:a {:href "/"} "Cancel"]]]]])))
 
-(def created
+(defn created
   "Renders a confirmation message."
-  (layout false
-    [:p "Thank you for your message!"
-        [:a {:href "/"} "Main page"]]))
+  [conf]
+  (layout conf
+    [:div.l-box
+      [:h1 "Thank you for your message!"]
+      [:p [:a {:href "/"} "<< Main page"]]]))
+

@@ -31,11 +31,11 @@
         (send-order-confirmation! order)
         (send-order-notification! order))
 
-      (view/create order))
+      (view/create order {:menu-types? true}))
 
     ; FAILED
-    (view/show (assoc-errors order validator))))
+    (view/show (assoc-errors order validator) {:menu-types? true})))
 
 (defroutes routes
-  (GET  "/order" [box]   (view/show {:box box}))
+  (GET  "/order" [box]   (view/show {:box box} {:menu-types? true}))
   (POST "/order" [order] (create order)))

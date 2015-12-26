@@ -71,7 +71,7 @@
         (has (some-text? "2500 Baden"))
         (has (some-text? "Austria"))
         (has (some-text? "ullmann.philipp@gmail.com"))
-        (follow "Main page")
+        (follow "<< Main page")
 
         ; PRICING PAGE
         (has (some-text? "How it works")))))
@@ -272,7 +272,7 @@
 
       ; ORDER CONFIRMATION PAGE
       (has (some-text? "Thank you for your message!"))
-      (follow "Main page")
+      (follow "<< Main page")
 
       ; PRICING PAGE
       (has (some-text? "How it works"))))
