@@ -93,7 +93,8 @@
                                       :checked terms-accepted}
 
                                      " I've read the "
-                                     [:a {:href "/terms_and_conditions"}
+                                     [:a {:href   "/terms_and_conditions"
+                                          :target "_blank"}
                                          "terms and conditions"]]]
 
             [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]
