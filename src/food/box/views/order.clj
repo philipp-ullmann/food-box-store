@@ -83,9 +83,6 @@
             [:select#country {:name "order[country]"}
                              (country-options country)]]
 
-          (if (blank? country)
-            [:script {:type "text/javascript"} "select_current_country();"])
-      
           [:div.pure-controls
             [:label.pure-checkbox {:for "terms-accepted"}
               [:input#terms-accepted {:type    "checkbox"

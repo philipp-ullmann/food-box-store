@@ -12,6 +12,11 @@
                              [mailer  :refer [send-order-confirmation!
                                               send-order-notification!]]]))
 
+(defn show
+  "Shows the order formular."
+  [order]
+  (view/show order {:menu-types? true}))
+
 (defn create
   "Validates an order and sends confirmation and notification emails."
   [order]
@@ -34,8 +39,10 @@
       (view/create order {:menu-types? true}))
 
     ; FAILED
-    (view/show (assoc-errors order validator) {:menu-types? true})))
+    (show (assoc-errors order validator))))
 
 (defroutes routes
-  (GET  "/order" [box]   (view/show {:box box} {:menu-types? true}))
+  (GET "/order" [box :as req]
+    (show {:box box :country (get-in req [:location :country-code])}))
+
   (POST "/order" [order] (create order)))

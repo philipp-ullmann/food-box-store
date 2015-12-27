@@ -1,8 +1,9 @@
 (ns food.box.store
-  (:require [ring.adapter.jetty         :refer [run-jetty]]
-            [food.box.middleware        :refer [wrap-exception]]
-            [food.box.models.conf       :refer [PORT]]
-            [food.box.views.application :as view]
+  (:require [ring.adapter.jetty                 :refer [run-jetty]]
+            [de.bertschneider.clj-geoip.handler :refer [geoip-handler]]
+            [food.box.middleware                :refer [wrap-exception]]
+            [food.box.models.conf               :refer [PORT]]
+            [food.box.views.application         :as view]
 
             [ring.middleware [params         :refer [wrap-params]]
                              [nested-params  :refer [wrap-nested-params]]
@@ -32,6 +33,7 @@
 (def app
   (-> routes
       wrap-exception
+      geoip-handler
       wrap-keyword-params
       wrap-nested-params
       wrap-params))
