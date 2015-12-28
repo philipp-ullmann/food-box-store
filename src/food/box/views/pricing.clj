@@ -27,12 +27,9 @@
                                          [:span " per box"]]]
 
             [:ul.pricing-table-list
-              [:li "FREE shipping worldwide"]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]]
+              [:li "5 to 7 candies, chocolate or biscuit"]
+              [:li "Something from the nature"]
+              [:li "FREE shipping worldwide"]]
 
             (choose-button SMALL)]]
 
@@ -45,12 +42,10 @@
                                          [:span " per box"]]]
 
             [:ul.pricing-table-list
-              [:li "FREE shipping worldwide"]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]]
+              [:li "8 to 12 candies, chocolate, biscuit or chips"]
+              [:li "1 soft drink"]
+              [:li "Something from the nature"]
+              [:li "FREE shipping worldwide"]]
 
             (choose-button REGULAR)]]
 
@@ -63,12 +58,11 @@
                                          [:span " per box"]]]
 
             [:ul.pricing-table-list
-              [:li "FREE shipping worldwide"]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]
-              [:li "..."]]
+              [:li "13 to 17 candies, chocolate, biscuit or chips"]
+              [:li "1 soft drink"]
+              [:li "A special gift"]
+              [:li "Something from the nature"]
+              [:li "FREE shipping worldwide"]]
 
             (choose-button PREMIUM)]]]
 
