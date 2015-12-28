@@ -12,18 +12,16 @@
             [compojure [core  :refer [defroutes]]
                        [route :refer [resources not-found]]]
 
-            [food.box.controllers [pricing :as pricing]
+            [food.box.controllers [pages   :as pages]
                                   [order   :as order]
-                                  [contact :as contact]
-                                  [terms   :as terms]])
+                                  [contact :as contact]])
             
   (:gen-class))
 
 (defroutes routes
-  pricing/routes
+  pages/routes
   order/routes
   contact/routes
-  terms/routes
   (resources "/")
   (not-found
     (view/error

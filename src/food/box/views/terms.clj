@@ -1,7 +1,7 @@
 (ns food.box.views.terms
   (:require [food.box.views.application :refer :all]))
 
-(defn show
+(defn terms
   "Shows the terms and conditions web page."
   [conf]
   (layout [conf]

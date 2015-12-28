@@ -1,4 +1,4 @@
-(ns food.box.views.pricing
+(ns food.box.views.home
   (:require [food.box.models.conf       :refer [PRICES SMALL REGULAR PREMIUM]]
             [food.box.views.application :refer :all]))
 
@@ -9,7 +9,7 @@
     [:input {:type "hidden" :name "box" :value value}]
     [:button.button-choose.pure-button {:type "submit"} "Choose"]])
 
-(defn show
+(defn home
   "Displays the pricing table."
   [conf]
   (layout conf

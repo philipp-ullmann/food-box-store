@@ -17,7 +17,7 @@
   [order]
   (view/show order {:menu-types? true}))
 
-(defn create
+(defn create!
   "Validates an order and sends confirmation and notification emails."
   [order]
 
@@ -45,4 +45,4 @@
   (GET "/order" [box :as req]
     (show {:box box :country (get-in req [:location :country-code])}))
 
-  (POST "/order" [order] (create order)))
+  (POST "/order" [order] (create! order)))
