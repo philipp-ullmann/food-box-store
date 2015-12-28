@@ -37,9 +37,9 @@
     [:body
       [:div.pure-menu.pure-menu-horizontal
         [:ul.pure-menu-list
-          (menu-item "TYPES OF BOXES" "/"        menu-types?)
-          (menu-item "CONTACT"        "/contact" menu-contact?)
-          (menu-item "ABOUT US"       "#"        menu-about?)]]
+          (menu-item "TYPES OF BOXES" "/"         menu-types?)
+          (menu-item "CONTACT"        "/contact"  menu-contact?)
+          (menu-item "ABOUT US"       "/about_us" menu-about?)]]
 
       (if banner? [:div.banner [:hi.banner-head "AUSTRIAN ALPS" [:br] "TASTY FOOD BOX!"]])
 
