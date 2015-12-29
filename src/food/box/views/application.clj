@@ -13,8 +13,8 @@
     [:head
       [:meta {:charset "utf-8"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
-      [:meta {:name "description" :content "A web store to sell austrian food boxes in different sizes."}]
-      [:title "Austrian alps food box"]
+      [:meta {:name "description" :content "A web store to sell austrian candy food boxes in different sizes."}]
+      [:title "ViennaSweety"]
       (include-css "http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
       (include-css "/css/application.css")
 
@@ -41,7 +41,7 @@
           (menu-item "CONTACT"        "/contact"  menu-contact?)
           (menu-item "ABOUT US"       "/about_us" menu-about?)]]
 
-      (if banner? [:div.banner [:hi.banner-head "AUSTRIAN ALPS" [:br] "TASTY FOOD BOX!"]])
+      (if banner? [:div.banner [:hi.banner-head "ViennaSweety" [:br] "TASTY FOOD BOX!"]])
 
       body
 
