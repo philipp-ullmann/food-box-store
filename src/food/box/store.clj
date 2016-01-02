@@ -37,5 +37,5 @@
       wrap-params))
 
 (defn -main [& args]
-  (run-jetty app {:port  port
+  (run-jetty app {:port  (port)
                   :join? false}))
