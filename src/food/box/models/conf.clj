@@ -14,9 +14,9 @@
 
 ; PRICES
 (def PRICES
-  {SMALL   "$15"
-   REGULAR "$25"
-   PREMIUM "$35"})
+  {SMALL   "$19"
+   REGULAR "$29"
+   PREMIUM "$39"})
 
 ; BANKING
 (def BANK-ACCOUNT
