@@ -16,6 +16,7 @@
   :main ^:skip-aot food.box.store
   :uberjar-name "vienna-sweety-standalone.jar"
   :target-path "target/%s"
+  :min-lein-version "2.0.0"
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[kerodon   "0.7.0"]]
                        :plugins      [[lein-ring "0.9.7"]]
