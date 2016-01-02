@@ -15,15 +15,15 @@
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
       [:meta {:name "description" :content "A web store to sell austrian candy food boxes in different sizes."}]
       [:title "ViennaSweety"]
-      (include-css "http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
+      (include-css "/css/pure-min.css")
       (include-css "/css/application.css")
 
       "<!--[if lte IE 8]>"
-      (include-css "http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css")
+      (include-css "/css/grids-responsive-old-ie-min.css")
       "<![endif]-->"
 
       "<!--[if gt IE 8]><!-->"
-      (include-css "http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css")
+      (include-css "/css/grids-responsive-min.css")
       "<!--<![endif]-->"
 
       "<!--[if lte IE 8]>"
