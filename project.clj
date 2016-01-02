@@ -1,6 +1,6 @@
 (defproject food.box.store "0.1.0-SNAPSHOT"
-  :description "Alps food box store."
-  :url "https://bitbucket.org/philipp-ullmann/food-box-store/overview"
+  :description "Vienna Sweety food box store."
+  :url "https://bitbucket.org/philipp-ullmann/vienna-sweety/overview"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure        "1.7.0"]
@@ -14,7 +14,7 @@
                  [clj-time                   "0.11.0"]
                  [de.bertschneider/clj-geoip "0.2"]]
   :main ^:skip-aot food.box.store
-  :uberjar-name "store-standalone.jar"
+  :uberjar-name "vienna-sweety-standalone.jar"
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[kerodon   "0.7.0"]]
