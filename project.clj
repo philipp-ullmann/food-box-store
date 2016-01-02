@@ -17,9 +17,12 @@
   :uberjar-name "vienna-sweety-standalone.jar"
   :target-path "target/%s"
   :min-lein-version "2.0.0"
+  :plugins [[environ/environ.lein "0.3.1"]]
+  :hooks [environ.leiningen.hooks]
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[kerodon   "0.7.0"]]
                        :plugins      [[lein-ring "0.9.7"]]
 
                        :ring {:handler food.box.store/app
-                              :port    8080}}})
+                              :port    8080}}
+             :production {:env {:production true}}})
