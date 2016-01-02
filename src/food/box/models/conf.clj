@@ -3,7 +3,7 @@
             [clojure.string :refer [blank?]]))
 
 ; PORT
-(def PORT (Integer. (System/getenv "PORT")))
+(def PORT (Integer. (:port env)))
 
 ; BOXES
 (def SMALL   "small")

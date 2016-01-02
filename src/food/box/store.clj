@@ -1,6 +1,7 @@
 (ns food.box.store
   (:require [ring.adapter.jetty                 :refer [run-jetty]]
             [de.bertschneider.clj-geoip.handler :refer [geoip-handler]]
+            [environ.core                       :refer [env]]
             [food.box.middleware                :refer [wrap-exception]]
             [food.box.models.conf               :refer [PORT]]
             [food.box.views.application         :as view]
@@ -37,5 +38,5 @@
       wrap-params))
 
 (defn -main [& args]
-  (run-jetty app {:port  PORT
+  (run-jetty app {:port  (Integer. (:port env))
                   :join? false}))
