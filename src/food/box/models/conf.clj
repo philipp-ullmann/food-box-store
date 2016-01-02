@@ -28,7 +28,7 @@
 
 ; EMAIL
 (def GMAIL-CREDENTIALS
-  {:email    "ullmann.philipp@gmail.com"
+  {:email    "vienna.sweety@gmail.com"
    :password (:mail-password env)})
 
 (def EMAIL-ENABLED?
