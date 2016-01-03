@@ -43,6 +43,7 @@
 
 (defroutes routes
   (GET "/order" [box :as req]
-    (show {:box box :country (get-in req [:location :country-code])}))
+    (do (log/info (:location req))
+    (show {:box box :country (get-in req [:location :country-code])})))
 
   (POST "/order" [order] (create! order)))
