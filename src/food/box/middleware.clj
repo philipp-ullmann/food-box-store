@@ -12,7 +12,7 @@
   [handler]
   (let [lookup-service (geoip/multi-lookup-service)]
     (fn [request]
-      (let [ip (or (:x-forwarded-for request)
+      (let [ip (or (get-in request [:headers :x-forwarded-for])
                    (:remote-addr request))
             location (geoip/lookup lookup-service ip)
             req (assoc request :location location)]
