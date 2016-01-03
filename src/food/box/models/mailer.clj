@@ -16,7 +16,7 @@
     con
     {:from    (:email GMAIL-CREDENTIALS)
      :to      (:email order)
-     :subject "Alps food box order confirmation"
+     :subject "ViennaSweety order confirmation"
 
      :body [{:type    "text/html; charset=utf-8"
              :content (view/confirmation order)}]}))
@@ -28,7 +28,7 @@
     con
     {:from    (:email GMAIL-CREDENTIALS)
      :to      (:email GMAIL-CREDENTIALS)
-     :subject (str "Alps food box order: " (:number order))
+     :subject (str "ViennaSweety order: " (:number order))
 
      :body [{:type    "text/html; charset=utf-8"
              :content (view/notification order)}]}))
@@ -40,7 +40,7 @@
     con
     {:from    (:email GMAIL-CREDENTIALS)
      :to      (:email GMAIL-CREDENTIALS)
-     :subject (str "Alps food box exception: " exception)
+     :subject (str "ViennaSweety exception: " exception)
 
      :body [{:type    "text/html; charset=utf-8"
              :content (view/exception exception)}]}))
@@ -52,6 +52,6 @@
     con
     {:from    (:email contact)
      :to      (:email GMAIL-CREDENTIALS)
-     :subject (str "Alps food box message: " (:name contact))
+     :subject (str "ViennaSweety message: " (:name contact))
      :body [{:type    "text/html; charset=utf-8"
              :content (view/contact contact)}]}))

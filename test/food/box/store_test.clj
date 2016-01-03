@@ -50,7 +50,7 @@
         ; FILL IN
         (fill-in "First Name *"     "Philipp")
         (fill-in "Last Name *"      "Ullmann")
-        (fill-in "Email Address *"  "vienna.sweety@gmail.com")
+        (fill-in "Email Address *"  "philipp.ullmann@gmail.com")
         (fill-in "Street *"         "Boldrinigasse 1/6")
         (fill-in "Postcode / Zip *" "2500")
         (fill-in "Town / City *"    "Baden")
@@ -70,7 +70,7 @@
         (has (some-text? "Boldrinigasse 1/6"))
         (has (some-text? "2500 Baden"))
         (has (some-text? "Austria"))
-        (has (some-text? "vienna.sweety@gmail.com"))
+        (has (some-text? "philipp.ullmann@gmail.com"))
         (follow "<< Main page")
 
         ; PRICING PAGE
@@ -183,7 +183,7 @@
         ; FILL IN
         (fill-in "First Name *"     "Philipp")
         (fill-in "Last Name *"      "Ullmann")
-        (fill-in "Email Address *"  "vienna.sweety@gmail")
+        (fill-in "Email Address *"  "philipp.ullmann@gmail")
         (fill-in "Street *"         "Boldrinigasse 1/6")
         (fill-in "Postcode / Zip *" "2500")
         (fill-in "Town / City *"    "Baden")
@@ -198,7 +198,7 @@
         (has (value?    [:input#box]       box-name))
         (has (value?    "First Name *"     "Philipp"))
         (has (value?    "Last Name *"      "Ullmann"))
-        (has (value?    "Email Address *"  "vienna.sweety@gmail"))
+        (has (value?    "Email Address *"  "philipp.ullmann@gmail"))
         (has (value?    "Street *"         "Boldrinigasse 1/6"))
         (has (value?    "Postcode / Zip *" "2500"))
         (has (value?    "Town / City *"    "Baden"))
@@ -228,7 +228,7 @@
       ; FILL IN
       (fill-in "First Name *"     "Philipp")
       (fill-in "Last Name *"      "Ullmann")
-      (fill-in "Email Address *"  "vienna.sweety@gmail.com")
+      (fill-in "Email Address *"  "philipp.ullmann@gmail.com")
       (fill-in "Street *"         "Boldrinigasse 1/6")
       (fill-in "Postcode / Zip *" "2500")
       (fill-in "Town / City *"    "Baden")
@@ -243,7 +243,7 @@
       (has (value?    [:input#box]       "unknown"))
       (has (value?    "First Name *"     "Philipp"))
       (has (value?    "Last Name *"      "Ullmann"))
-      (has (value?    "Email Address *"  "vienna.sweety@gmail.com"))
+      (has (value?    "Email Address *"  "philipp.ullmann@gmail.com"))
       (has (value?    "Street *"         "Boldrinigasse 1/6"))
       (has (value?    "Postcode / Zip *" "2500"))
       (has (value?    "Town / City *"    "Baden"))
@@ -266,7 +266,7 @@
 
       ; FILL IN
       (fill-in "Name *"          "Philipp Ullmann")
-      (fill-in "Email Address *" "vienna.sweety@gmail.com")
+      (fill-in "Email Address *" "philipp.ullmann@gmail.com")
       (fill-in "Message *"       "I have some questions")
       (press   "Send")
 
@@ -323,7 +323,7 @@
 
       ; FILL IN
       (fill-in "Name *"          "Philipp Ullmann")
-      (fill-in "Email Address *" "vienna.sweetygmail.com")
+      (fill-in "Email Address *" "philipp.ullmanngmail.com")
       (fill-in "Message *"       "I have some questions")
       (press "Send")
 
@@ -335,5 +335,5 @@
 
       ; FIELD VALUES
       (has (value?   "Name *"          "Philipp Ullmann"))
-      (has (value?   "Email Address *" "vienna.sweetygmail.com"))
+      (has (value?   "Email Address *" "philipp.ullmanngmail.com"))
       (has (content? "Message *"       "I have some questions"))))
