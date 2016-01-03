@@ -34,12 +34,6 @@
    :ssl  true
    :user SENDER
    :pass (:mail-password env)})
-;(def SMTP
-;  {:host "smtp.sendgrid.net"
-;   :port 587 
-;   :ssl  false
-;   :user (:sendgrid-username env)
-;   :pass (:sendgrid-password env)})
 
 (def EMAIL-ENABLED?
   (not (blank? (:mail-password env))))

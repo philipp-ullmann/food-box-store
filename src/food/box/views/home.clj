@@ -28,7 +28,6 @@
 
             [:ul.pricing-table-list
               [:li "5 to 7 candies, chocolate or biscuit"]
-              [:li "Something from the nature"]
               [:li "FREE shipping worldwide"]]
 
             (choose-button SMALL)]]
@@ -44,7 +43,6 @@
             [:ul.pricing-table-list
               [:li "8 to 12 candies, chocolate, biscuit or chips"]
               [:li "1 soft drink"]
-              [:li "Something from the nature"]
               [:li "FREE shipping worldwide"]]
 
             (choose-button REGULAR)]]
@@ -61,7 +59,6 @@
               [:li "13 to 17 candies, chocolate, biscuit or chips"]
               [:li "1 soft drink"]
               [:li "A special gift"]
-              [:li "Something from the nature"]
               [:li "FREE shipping worldwide"]]
 
             (choose-button PREMIUM)]]]
