@@ -27,9 +27,19 @@
    :country "Austria"})
 
 ; EMAIL
-(def GMAIL-CREDENTIALS
-  {:email    "vienna.sweety@gmail.com"
-   :password (:mail-password env)})
+(def SENDER "vienna.sweety@gmail.com")
+
+(def SMTP
+  {:host "smtp.gmail.com"
+   :ssl  true
+   :user SENDER
+   :pass (:mail-password env)})
+;(def SMTP
+;  {:host "smtp.sendgrid.net"
+;   :port 587 
+;   :ssl  false
+;   :user (:sendgrid-username env)
+;   :pass (:sendgrid-password env)})
 
 (def EMAIL-ENABLED?
   (not (blank? (:mail-password env))))
