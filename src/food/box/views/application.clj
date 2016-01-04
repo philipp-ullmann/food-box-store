@@ -13,7 +13,7 @@
     [:head
       [:meta {:charset "utf-8"}]
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
-      [:meta {:name "description" :content "A web store to sell austrian candy food boxes in different sizes."}]
+      [:meta {:name "description" :content "Austrian candy and snack food boxes to your doorstep."}]
       [:title "ViennaSweety"]
       (include-css "/css/pure-min.css")
       (include-css "/css/application.css")
