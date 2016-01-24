@@ -22,15 +22,18 @@
               :href "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
               :integrity "sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
               :crossorigin "anonymous"}]]
+      [:link {:rel "stylesheet" :href "/css/pricing_table.css"}]
 
     [:body
-      [:nav.navbar.navbar-light.bg-faded
-        [:div.nav.navbar-nav
-          (nav-item "TYPES OF BOXES" "/"         nav-types?)
-          (nav-item "CONTACT"        "/contact"  nav-contact?)
-          (nav-item "ABOUT US"       "/about_us" nav-about?)]]
+      [:div.container
 
-      body
+        [:nav.navbar.navbar-light.bg-faded
+          [:div.nav.navbar-nav
+            (nav-item "TYPES OF BOXES" "/"         nav-types?)
+            (nav-item "CONTACT"        "/contact"  nav-contact?)
+            (nav-item "ABOUT US"       "/about_us" nav-about?)]]
+
+        body]
 
       [:script {:src "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"}]
       [:script {:src "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
