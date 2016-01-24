@@ -1,9 +1,9 @@
 (ns food.box.store
-  (:require [ring.adapter.jetty                 :refer [run-jetty]]
-            [food.box.middleware                :refer [wrap-exception
-                                                        wrap-location]]
-            [food.box.models.conf               :refer [port]]
-            [food.box.views.application         :as view]
+  (:require [ring.adapter.jetty :refer [run-jetty]]
+            [food.box.middleware :refer [wrap-exception
+                                         wrap-location]]
+            [food.box.models.conf :refer [port]]
+            [food.box.views.application :as view]
 
             [ring.middleware [params         :refer [wrap-params]]
                              [nested-params  :refer [wrap-nested-params]]

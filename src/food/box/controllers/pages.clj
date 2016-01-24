@@ -5,6 +5,6 @@
                             [terms    :refer [terms]]]))
 
 (defroutes routes
-  (GET "/" [] (home {:banner? true :menu-types? true}))
-  (GET "/about_us" [] (about-us {:menu-about? true}))
+  (GET "/" [] (home {:nav-types? true}))
+  (GET "/about_us" [] (about-us {:nav-about? true}))
   (GET "/terms_and_conditions" [] (terms {})))

@@ -1,63 +1,51 @@
 (ns food.box.views.application
-  (:require [hiccup.page :refer (html5 include-css)]))
+  (:require [hiccup.page :refer [html5]]))
 
-(defn- menu-item [name url selected?]
-  (let [classes (if selected? "pure-menu-item pure-menu-selected"
-                              "pure-menu-item")]
-    [:li {:class classes} [:a.pure-menu-link {:href url} name]]))
+(defn- nav-item [name path selected?]
+  (if selected?
+    [:a.nav-item.nav-link.active {:href path} name [:span.sr-only "(current)"]]
+    [:a.nav-item.nav-link {:href path} name]))
 
 (defn layout
   "Application layout."
-  [{:keys [banner? menu-types? menu-contact? menu-about?]} & body]
-  (html5
+  [{:keys [nav-types? nav-contact? nav-about?]} & body]
+  (html5 {:lang "en"}
     [:head
       [:meta {:charset "utf-8"}]
-      [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
+      [:meta {:name "viewport" :content "width=device-width, initial-scale=1, shrink-to-fit=no"}]
+      [:meta {:http-equiv "x-ua-compatible" :content "ie=edge"}]
       [:meta {:name "description" :content "Austrian candy and snack food boxes to your doorstep."}]
+
       [:title "ViennaSweety"]
-      (include-css "/css/pure-min.css")
-      (include-css "/css/application.css")
 
-      "<!--[if lte IE 8]>"
-      (include-css "/css/grids-responsive-old-ie-min.css")
-      "<![endif]-->"
-
-      "<!--[if gt IE 8]><!-->"
-      (include-css "/css/grids-responsive-min.css")
-      "<!--<![endif]-->"
-
-      "<!--[if lte IE 8]>"
-      (include-css "/css/layout-old-ie.css")
-      "<![endif]-->"
-
-      "<!--[if gt IE 8]><!-->"
-      (include-css "/css/layout.css")
-      "<!--<![endif]-->"]
+      [:link {:rel "stylesheet"
+              :href "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+              :integrity "sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+              :crossorigin "anonymous"}]]
 
     [:body
-      [:div.pure-menu.pure-menu-horizontal
-        [:ul.pure-menu-list
-          (menu-item "TYPES OF BOXES" "/"         menu-types?)
-          (menu-item "CONTACT"        "/contact"  menu-contact?)
-          (menu-item "ABOUT US"       "/about_us" menu-about?)]]
-
-      (if banner? [:div.banner [:hi.banner-head "ViennaSweety" [:br] "TASTY FOOD BOX!"]])
+      [:nav.navbar.navbar-light.bg-faded
+        [:div.nav.navbar-nav
+          (nav-item "TYPES OF BOXES" "/"         nav-types?)
+          (nav-item "CONTACT"        "/contact"  nav-contact?)
+          (nav-item "ABOUT US"       "/about_us" nav-about?)]]
 
       body
 
-      [:div.footer.l-box
-        [:p
-         "Please read the "
-         [:a {:href "/terms_and_conditions"} "terms and conditions"]]]]))
+      [:script {:src "https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"}]
+      [:script {:src "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+                :integrity "sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+                :crossorigin "anonymous"}]]))
 
 (defn error
   "Error dialog box."
   [header body]
-  (html5
+  (html5 {:lang "en"}
     [:head
       [:meta {:charset "utf-8"}]
       [:title header]
-      (include-css "/css/error.css")]
+      [:link {:rel "stylesheet" :href "/css/error.css"}]]
+
     [:body
       [:div.dialog
         [:h1 header]]

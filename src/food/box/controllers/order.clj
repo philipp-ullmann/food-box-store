@@ -15,7 +15,7 @@
 (defn show
   "Shows the order formular."
   [order]
-  (view/show order {:menu-types? true}))
+  (view/show order {:nav-types? true}))
 
 (defn create!
   "Validates an order and sends confirmation and notification emails."
@@ -36,7 +36,7 @@
         (send-order-confirmation! order)
         (send-order-notification! order))
 
-      (view/create order {:menu-types? true}))
+      (view/create order {:nav-types? true}))
 
     ; FAILED
     (show (assoc-errors order validator))))

@@ -4,7 +4,7 @@
 (defn about-us
   "Shows the about us web page."
   [conf]
-  (layout [conf]
+  (layout conf
     [:div.l-box
       [:h1 "About us"]
       

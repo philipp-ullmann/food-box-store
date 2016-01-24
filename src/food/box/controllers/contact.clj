@@ -24,11 +24,11 @@
       (when EMAIL-ENABLED?
         (send-contact-message! contact))
 
-      (view/created {:menu-contact? true}))
+      (view/created {:nav-contact? true}))
 
     ; FAILED
-    (view/show (assoc-errors contact validator) {:menu-contact? true})))
+    (view/show (assoc-errors contact validator) {:nav-contact? true})))
 
 (defroutes routes
-  (GET  "/contact" []        (view/show {:menu-contact? true}))
+  (GET  "/contact" []        (view/show {:nav-contact? true}))
   (POST "/contact" [contact] (create! contact)))
