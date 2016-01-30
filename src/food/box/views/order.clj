@@ -14,89 +14,94 @@
   "Renders the order formular."
   [{:keys [box first-name last-name email street postcode city country terms-accepted errors]} conf]
   (layout conf 
-    [:div.l-box
-      [:h1 "Order a \"" box "\" box"]
+    [:div.page-header [:h1 "Order a \"" box "\" box"]]
 
-      (if errors
-        [:ul.alert-box
-          (map #(errors-for (% errors))
-               [:first-name
-                :last-name
-                :email
-                :street
-                :postcode
-                :city
-                :country
-                :terms-accepted
-                :box])])
+    (if errors
+      [:ul.alert-box
+        (map #(errors-for (% errors))
+             [:first-name
+              :last-name
+              :email
+              :street
+              :postcode
+              :city
+              :country
+              :terms-accepted
+              :box])])
 
-      [:form.pure-form.pure-form-aligned {:method "post" :action "/order"}
-        [:fieldset
-          [:input#box {:type  "hidden"
-                       :name  "order[box]"
-                       :value box}]
+    [:form {:method "post" :action "/order"}
+      [:input#box {:type  "hidden"
+                   :name  "order[box]"
+                   :value box}]
 
-          [:div.pure-control-group
-            [:label {:for "first-name"} "First Name *"]
-            [:input#first-name {:type     "text"
-                                :name     "order[first-name]"
-                                :value    first-name
-                                :required true}]]
-      
-          [:div.pure-control-group
-            [:label {:for "last-name"} "Last Name *"]
-            [:input#last-name {:type     "text"
-                               :name     "order[last-name]"
-                               :value    last-name
-                               :required true}]]
-      
-          [:div.pure-control-group
-            [:label {:for "email"} "Email Address *"]
-            [:input#email {:type     "email"
-                           :name     "order[email]"
-                           :value    email
-                           :required true}]]
-      
-          [:div.pure-control-group
-            [:label {:for "street"} "Street *"]
-            [:input#street {:type     "text"
-                            :name     "order[street]"
-                            :value    street
-                            :required true}]]
+      [:fieldset.form-group
+        [:label {:for "first-name"} "First Name *"]
+        [:input.form-control {:type     "text"
+                              :id       "first-name"
+                              :name     "order[first-name]"
+                              :value    first-name
+                              :required true}]]
+    
+      [:fieldset.form-group
+        [:label {:for "last-name"} "Last Name *"]
+        [:input.form-control {:type     "text"
+                              :id       "last-name"
+                              :name     "order[last-name]"
+                              :value    last-name
+                              :required true}]]
+    
+      [:fieldset.form-group
+        [:label {:for "email"} "Email Address *"]
+        [:input.form-control {:type     "email"
+                              :id       "email"
+                              :name     "order[email]"
+                              :value    email
+                              :required true}]]
+    
+      [:fieldset.form-group
+        [:label {:for "street"} "Street *"]
+        [:input.form-control {:type     "text"
+                              :id       "street"
+                              :name     "order[street]"
+                              :value    street
+                              :required true}]]
 
-          [:div.pure-control-group
-            [:label {:for "postcode"} "Postcode / Zip *"]
-            [:input#postcode {:type     "text"
+      [:fieldset.form-group
+        [:label {:for "postcode"} "Postcode / Zip *"]
+        [:input.form-control {:type     "text"
+                              :id       "postcode"
                               :name     "order[postcode]"
                               :value    postcode
                               :required true}]]
 
-          [:div.pure-control-group
-            [:label {:for "city"} "Town / City *"]
-            [:input#city {:type     "text"
-                          :name     "order[city]"
-                          :value    city
-                          :required true}]]
+      [:fieldset.form-group
+        [:label {:for "city"} "Town / City *"]
+        [:input.form-control {:type     "text"
+                              :id       "city"
+                              :name     "order[city]"
+                              :value    city
+                              :required true}]]
 
-          [:div.pure-control-group
-            [:label {:for "country"} "Country *"]
-            [:select#country {:name "order[country]"}
-                             (country-options country)]]
+      [:fieldset.form-group
+        [:label {:for "country"} "Country *"]
+        [:select.form-control {:id   "country"
+                               :name "order[country]"}
+                              (country-options country)]]
 
-          [:div.pure-controls
-            [:label.pure-checkbox {:for "terms-accepted"}
-              [:input#terms-accepted {:type    "checkbox"
-                                      :name    "order[terms-accepted]"
-                                      :checked terms-accepted}
+      [:div.checkbox
+        [:label {:for "terms-accepted"}
+          [:input#terms-accepted {:type    "checkbox"
+                                  :name    "order[terms-accepted]"
+                                  :checked terms-accepted}
 
-                                     " I've read the "
-                                     [:a {:href   "/terms_and_conditions"
-                                          :target "_blank"}
-                                         "terms and conditions"]]]
+                                 " I've read the "
+                                 [:a {:href   "/terms_and_conditions"
+                                      :target "_blank"}
+                                     "terms and conditions"]]]]
 
-            [:button.pure-button.pure-button-primary {:type "submit"} "Confirm"]
-            " | "
-            [:a {:href "/"} "Cancel"]]]]]))
+        [:button.btn.btn-primary {:type "submit"} "Submit"]
+        " | "
+        [:a {:href "/"} "Cancel"]]))
 
 (defn summary-partial
   "Order summary and payment instruction for the customer."
