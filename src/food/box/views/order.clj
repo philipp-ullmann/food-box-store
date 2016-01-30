@@ -103,7 +103,7 @@
 
         (errors-for (:country errors))]
 
-      [(if-not (:terms-accepted errors) :div.checkbox.has-danger :div.checkbox)
+      [(if (:terms-accepted errors) :div.checkbox.has-danger :div.checkbox)
         [:label.form-control-label {:for "terms-accepted"}
           [:input#terms-accepted {:type    "checkbox"
                                   :name    "order[terms-accepted]"
@@ -114,7 +114,7 @@
                                       :target "_blank"}
                                      "terms and conditions"]]]
 
-        (errors-for ["must be accepted"])]
+        (errors-for (:terms-accepted errors))]
 
         [:button.btn.btn-primary {:type "submit"} "Submit"]
         " | "
