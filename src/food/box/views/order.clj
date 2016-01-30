@@ -16,19 +16,6 @@
   (layout conf 
     [:div.page-header [:h1 "Order a \"" box "\" box"]]
 
-    (if errors
-      [:ul.alert-box
-        (map #(errors-for (% errors))
-             [:first-name
-              :last-name
-              :email
-              :street
-              :postcode
-              :city
-              :country
-              :terms-accepted
-              :box])])
-
     [:form {:method "post" :action "/order"}
       [:input#box {:type  "hidden"
                    :name  "order[box]"
@@ -36,64 +23,85 @@
 
       [(if (:first-name errors) :fieldset.form-group.has-danger :fieldset.form-group)
         [:label.form-control-label {:for "first-name"} "First Name *"]
+
         [(if (:first-name errors) :input.form-control.form-control-danger :input.form-control)
            {:type     "text"
             :id       "first-name"
             :name     "order[first-name]"
             :value    first-name
-            :required true}]]
+            :required true}]
+        
+        (errors-for (:first-name errors))]
     
       [(if (:last-name errors) :fieldset.form-group.has-danger :fieldset.form-group)
         [:label.form-control-label {:for "last-name"} "Last Name *"]
+
         [(if (:last-name errors) :input.form-control.form-control-danger :input.form-control)
           {:type     "text"
            :id       "last-name"
            :name     "order[last-name]"
            :value    last-name
-           :required true}]]
+           :required true}]
+
+        (errors-for (:last-name errors))]
     
       [(if (:email errors) :fieldset.form-group.has-danger :fieldset.form-group)
         [:label.form-control-label {:for "email"} "Email Address *"]
+
         [(if (:email errors) :input.form-control.form-control-danger :input.form-control)
           {:type     "email"
            :id       "email"
            :name     "order[email]"
            :value    email
-           :required true}]]
+           :required true}]
+
+        (errors-for (:email errors))]
     
       [(if (:street errors) :fieldset.form-group.has-danger :fieldset.form-group)
         [:label.form-control-label {:for "street"} "Street *"]
+
         [(if (:street errors) :input.form-control.form-control-danger :input.form-control)
           {:type     "text"
            :id       "street"
            :name     "order[street]"
            :value    street
-           :required true}]]
+           :required true}]
+
+        (errors-for (:street errors))]
 
       [(if (:postcode errors) :fieldset.form-group.has-danger :fieldset.form-group)
         [:label.form-control-label {:for "postcode"} "Postcode / Zip *"]
+
         [(if (:postcode errors) :input.form-control.form-control-danger :input.form-control)
           {:type     "text"
            :id       "postcode"
            :name     "order[postcode]"
            :value    postcode
-           :required true}]]
+           :required true}]
+
+        (errors-for (:postcode errors))]
 
       [(if (:city errors) :fieldset.form-group.has-danger :fieldset.form-group)
         [:label.form-control-label {:for "city"} "Town / City *"]
+
         [(if (:city errors) :input.form-control.form-control-danger :input.form-control)
           {:type     "text"
            :id       "city"
            :name     "order[city]"
            :value    city
-           :required true}]]
+           :required true}]
+
+        (errors-for (:city errors))]
 
       [(if (:country errors) :fieldset.form-group.has-danger :fieldset.form-group)
         [:label.form-control-label {:for "country"} "Country *"]
+
         [(if (:country errors) :select.form-control.form-control-danger :select.form-control)
           {:id   "country"
            :name "order[country]"}
-          (country-options country)]]
+          (country-options country)]
+
+        (errors-for (:country errors))]
 
       [(if-not (:terms-accepted errors) :div.checkbox.has-danger :div.checkbox)
         [:label.form-control-label {:for "terms-accepted"}
@@ -104,7 +112,9 @@
                                  " I've read the "
                                  [:a {:href   "/terms_and_conditions"
                                       :target "_blank"}
-                                     "terms and conditions"]]]]
+                                     "terms and conditions"]]]
+
+        (errors-for ["must be accepted"])]
 
         [:button.btn.btn-primary {:type "submit"} "Submit"]
         " | "

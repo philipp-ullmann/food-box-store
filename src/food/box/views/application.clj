@@ -1,5 +1,6 @@
 (ns food.box.views.application
-  (:require [hiccup.page :refer [html5]]))
+  (:require [clojure.string :refer [join]]
+            [hiccup.page    :refer [html5]]))
 
 (defn- nav-item [name path selected?]
   (if selected?
@@ -55,7 +56,5 @@
       [:p body [:br] [:br]
           [:a {:href "/"} "<< Store"]]]))
 
-(defn errors-for
-  "Renders all errors for an attribute."
-  [errors]
-  (when errors (map #(vector :li %) errors)))
+(defn errors-for [errors]
+  (when errors [:small.text-muted.text-help "[" (join ", " errors) "]"]))
