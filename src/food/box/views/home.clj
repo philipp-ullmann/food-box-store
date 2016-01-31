@@ -2,9 +2,9 @@
   (:require [food.box.models.conf       :refer [PRICES SMALL REGULAR PREMIUM]]
             [food.box.views.application :refer :all]))
 
-(defn- price-card [name type items]
+(defn- price-card [name type id items]
   [:div.col-sm-4
-    [:div.card
+    [:div.card {:id id}
       [:div.card-block
         [:h4.card-title name]
         [:p.card-text (get PRICES type) [:span " per box"]]]
@@ -25,16 +25,16 @@
 
     ; PRICING CARD
     [:div.row.pricing-table
-      (price-card "SMALL" SMALL
+      (price-card "SMALL" SMALL "small-box"
         ["5 to 7 candies, chocolate or biscuit"
          "FREE shipping worldwide"])
 
-      (price-card "REGULAR" REGULAR
+      (price-card "REGULAR" REGULAR "regular-box"
         ["8 to 12 candies, chocolate, biscuit or chips"
          "1 soft drink"
          "FREE shipping worldwide"])
 
-      (price-card "PREMIUM" PREMIUM
+      (price-card "PREMIUM" PREMIUM "premium-box"
         ["13 to 17 candies, chocolate, biscuit or chips"
          "1 soft drink"
          "A special gift"

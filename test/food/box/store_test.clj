@@ -56,7 +56,7 @@
         (fill-in "Town / City *"    "Baden")
         (choose  "Country *"        "Austria")
         (check   "I've read the terms and conditions")
-        (press   "Confirm")
+        (press   "Submit")
 
         ; ORDER CONFIRMATION PAGE
         (has (some-text? (str "Thank you for ordering a " box-name " box.")))
@@ -74,7 +74,7 @@
         (follow "<< Main page")
 
         ; PRICING PAGE
-        (has (some-text? "How it works")))))
+        (has (some-text? "HOW IT WORKS")))))
 
 ;; ABORT ORDER
 ;; ============================================================================
@@ -105,7 +105,7 @@
         (follow "Cancel")
 
         ; PRICING PAGE
-        (has (some-text? "How it works")))))
+        (has (some-text? "HOW IT WORKS")))))
 
 ;; EMPTY ORDER FIELDS
 ;; ============================================================================
@@ -132,16 +132,16 @@
         (has (value?         "Town / City *"    ""))
         (has (no-selections? "Country *"))
         (has (unchecked?     "I've read the terms and conditions"))
-        (press "Confirm")
+        (press "Submit")
 
         ; VALIDATION ERRORS
-        (has (some-text? "First Name can't be blank"))
-        (has (some-text? "Last Name can't be blank"))
-        (has (some-text? "Email Address can't be blank"))
-        (has (some-text? "Street can't be blank"))
-        (has (some-text? "Postcode / Zip can't be blank"))
-        (has (some-text? "Town / City can't be blank"))
-        (has (some-text? "General business terms must be accepted"))
+        (has (some-text? "can't be blank"))
+        (has (some-text? "can't be blank"))
+        (has (some-text? "can't be blank"))
+        (has (some-text? "can't be blank"))
+        (has (some-text? "can't be blank"))
+        (has (some-text? "can't be blank"))
+        (has (some-text? "must be accepted"))
 
         ; FIELD VALUES
         (has (value?     [:input#box]       box-name))
@@ -189,10 +189,10 @@
         (fill-in "Town / City *"    "Baden")
         (choose  "Country *"        "Austria")
         (check   "I've read the terms and conditions")
-        (press   "Confirm")
+        (press   "Submit")
 
         ; VALIDATION ERRORS
-        (has (some-text? "Email Address must be a valid address"))
+        (has (some-text? "must be a valid address"))
 
         ; FIELD VALUES
         (has (value?    [:input#box]       box-name))
@@ -234,7 +234,7 @@
       (fill-in "Town / City *"    "Baden")
       (choose  "Country *"        "Austria")
       (check   "I've read the terms and conditions")
-      (press   "Confirm")
+      (press   "Submit")
 
       ; VALIDATION ERRORS
       (has (some-text? "Unknown food box size"))
@@ -275,7 +275,7 @@
       (follow "<< Main page")
 
       ; PRICING PAGE
-      (has (some-text? "How it works"))))
+      (has (some-text? "HOW IT WORKS"))))
 
 ;; EMPTY CONTACT FIELDS
 ;; ============================================================================
