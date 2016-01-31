@@ -27,7 +27,7 @@
     (if (:box errors)
       [:div.alert.alert-danger {:role "alert"} (errors-for (:box errors))])
 
-    [:div.page-header [:h1 "Order a \"" box "\" box"]]
+    [:h1 "Order a \"" box "\" box"]
 
     [:form {:method "post" :action "/order"}
       [:input#box {:type  "hidden"

@@ -1,54 +1,52 @@
 (ns food.box.views.contact
   (:require [food.box.views.application :refer :all]))
 
+(defn- text-field [[label type id value errors]]
+  [(if (id errors) :fieldset.form-group.has-danger :fieldset.form-group)
+    [:label.form-control-label {:for id} label]
+
+    [(if (id errors) :input.form-control.form-control-danger :input.form-control)
+       {:type     type
+        :id       id
+        :name     (str "contact[" (name id) "]")
+        :value    value
+        :required true}]
+  
+    (errors-for (id errors))])
+
 (defn show
   "Renders the contact formular."
   ([conf] (show {} conf))
 
   ([{:keys [name email message errors]} conf]
   (layout conf
-    [:div.l-box
-      [:h1 "Contact"]
+    [:h1 "Contact"]
 
-      (if errors
-        [:ul.alert-box
-          (map #(errors-for (% errors))
-               [:name :email :message])])
+    [:form {:method "post" :action "/contact"}
 
-      [:form.pure-form.pure-form-aligned {:method "post" :action "/contact"}
-        [:fieldset
-          [:div.pure-control-group
-            [:label {:for "name"} "Name *"]
-            [:input#name {:type     "text"
-                          :name     "contact[name]"
-                          :value    name
-                          :required true}]]
+      (map text-field [["Name *"          "text"  :name  name  errors]
+                       ["Email Address *" "email" :email email errors]])
+
+      [(if (:message errors) :fieldset.form-group.has-danger :fieldset.form-group)
+        [:label.form-control-label {:for "message"} "Message *"]
+
+        [(if (:message errors) :textarea.form-control.form-control-danger :textarea.form-control)
+           {:id       "message"
+            :name     "contact[message]"
+            :required true
+            :rows     "8"}
+           message]
       
-          [:div.pure-control-group
-            [:label {:for "email"} "Email Address *"]
-            [:input#email {:type     "email"
-                           :name     "contact[email]"
-                           :value    email
-                           :required true}]]
-      
-          [:div.pure-control-group
-            [:label {:for "message"} "Message *"]
-            [:textarea#message {:name     "contact[message]"
-                                :required true
-                                :rows     "8"
-                                :cols     "50"}
-                               message]]
-
-          [:div.pure-controls
-            [:button.pure-button.pure-button-primary {:type "submit"} "Send"]
-            " | "
-            [:a {:href "/"} "Cancel"]]]]])))
+        (errors-for (:message errors))]
+    
+      [:button.btn.btn-success {:type "submit"} "Send"]
+      " | "
+      [:a.btn.btn-danger {:href "/"} "Cancel"]])))
 
 (defn created
   "Renders a confirmation message."
   [conf]
   (layout conf
-    [:div.l-box
-      [:h1 "Thank you for your message!"]
-      [:p [:a {:href "/"} "<< Main page"]]]))
+    [:h1 "Thank you for your message!"]
+    [:p [:a.btn.btn-warning {:href "/"} "<< Main page"]]))
 

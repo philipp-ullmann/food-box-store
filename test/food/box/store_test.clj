@@ -136,11 +136,6 @@
 
         ; VALIDATION ERRORS
         (has (some-text? "can't be blank"))
-        (has (some-text? "can't be blank"))
-        (has (some-text? "can't be blank"))
-        (has (some-text? "can't be blank"))
-        (has (some-text? "can't be blank"))
-        (has (some-text? "can't be blank"))
         (has (some-text? "must be accepted"))
 
         ; FIELD VALUES
@@ -298,9 +293,7 @@
       (has (some-text? "Contact"))
 
       ; VALIDATION ERRORS
-      (has (some-text? "Name can't be blank"))
-      (has (some-text? "Email Address can't be blank"))
-      (has (some-text? "Message can't be blank"))
+      (has (some-text? "can't be blank"))
 
       ; FIELD VALUES
       (has (value?   "Name *"          ""))
@@ -331,7 +324,7 @@
       (has (some-text? "Contact"))
 
       ; VALIDATION ERRORS
-      (has (some-text? "Email Address must be a valid address"))
+      (has (some-text? "must be a valid address"))
 
       ; FIELD VALUES
       (has (value?   "Name *"          "Philipp Ullmann"))
