@@ -1,4 +1,4 @@
-# Food Box Store Demo
+# Food Box Store Demo [![Build Status](https://travis-ci.org/philipp-ullmann/food-box-store.svg?branch=master)](https://travis-ci.org/philipp-ullmann/food-box-store)
 
 Online food box store to sell austrian food packages.
 
