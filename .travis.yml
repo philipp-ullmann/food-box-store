@@ -15,3 +15,7 @@ before_install:
 script:
   - docker-compose -f docker-compose-test.yml up --build --abort-on-container-exit
   - return `docker-compose ps -q | xargs docker inspect -f '{{ .State.ExitCode }}' | grep -v 0 | wc -l | tr -d ' '`
+
+addons:
+  code_climate:
+    repo_token: eb8844d70b23e8d05243874708f30bdeca817ef2c9335d81a1be3aa940a4be49
