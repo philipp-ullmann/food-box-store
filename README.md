@@ -1,9 +1,9 @@
-# Food Box Store
+# Food Box Store Demo
 
 Online food box store to sell austrian food packages.
 
 ## Development
 
-* Start **webserver** with: `lein ring server-headless`
-* Run **tests** with: `lein test`
-* Update geoip files with: `bin/update_geoip_files.sh`
+* Start **webserver** with: `docker-compose up -d`
+* Run **tests** with: `docker-compose exec web lein test`
+* Update geoip files with: `docker-compose exec web bin/update_geoip_files.sh`
