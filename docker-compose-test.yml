@@ -1,0 +1,9 @@
+web:
+  build: .
+  command: lein test
+  volumes:
+    - .:/usr/src/app
+  environment:
+    - PORT=8080
+    - IBAN=AT123456789
+    - MAIL_PASSWORD=
