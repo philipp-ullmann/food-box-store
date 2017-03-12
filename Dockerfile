@@ -26,5 +26,5 @@ RUN apk add --update tzdata && \
     rm -rf project.clj src resources /tmp/* /var/cache/apk/*
 
 # Start store
-EXPOSE 80
+EXPOSE 8080
 CMD    ["java", "-jar", "/bin/store.jar"]
